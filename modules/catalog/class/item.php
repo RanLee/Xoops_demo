@@ -282,22 +282,21 @@ class CatalogItem extends XoopsObject
 //        $form->addElement(new XoopsFormRadioYN(_AM_CATALOG_DOHOT, 'item_hot',$this->getVar('item_hot')));
 //        $form->addElement(new XoopsFormText(_AM_CATALOG_SORT, 'weight', 40, 60, $this->getVar('weight')));
         if ($this->isNew())   $form->addElement(new XoopsFormHidden('item_buildtime', time()));
-        $form->addElement(new XoopsFormHidden('modify_time', time()));        
+        $form->addElement(new XoopsFormHidden('modify_time', time()));
         $form->addElement(new XoopsFormHidden('item_id', $this->getVar('item_id')));
         $form->addElement(new XoopsFormHidden('ac', 'insert'));
-        $btn_save = new XoopsFormButton('', 'submit', _SUBMIT, 'submit');  
+        $btn_save = new XoopsFormButton('', 'submit', _SUBMIT, 'submit');
         
 //        $btn_preview = new XoopsFormButton("", "btn_preview", _PREVIEW, "button");
 //        $btn_preview->setExtra('onclick="window.document.' . $form->getName() . '.preview.value=1; window.document.' . $form->getName() . '.submit()"');
 //        $form->addElement(new XoopsFormHidden('preview', 0));
                     
-        $button_tray = new XoopsFormElementTray("");        
-//        $button_tray->addElement($btn_preview);         
-        $button_tray->addElement($btn_save);          
-        $form->addElement($button_tray);       
-                      
+        $button_tray = new XoopsFormElementTray("");
+//        $button_tray->addElement($btn_preview);
+        $button_tray->addElement($btn_save);
+        $form->addElement($button_tray);
+
         return $form;
-               
     }
 }
 
