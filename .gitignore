@@ -44,4 +44,5 @@ Temporary Items
 .idea
 .gitignore
 .idea/.name
+.idea/workspace.xml
 .idea/Xoops_demo.iml
