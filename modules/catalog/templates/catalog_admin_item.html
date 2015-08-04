@@ -1,0 +1,76 @@
+
+<link rel="stylesheet" type="text/css" href="<{$xoops_url}>/modules/<{$xoops_dirname}>/templates/style.css" />
+
+<div style="float:left"><a href="admin.item.php?op=new"><{$smarty.const._AM_CATALOG_ADDITEM}></a><{* | <a href="admin.greenep.php"><{$smarty.const._AM_CATALOG_GREENEP_MANAGER}></a> | <a href="<{$xoops_url}>/modules/reseller/admin/admin.reseller.php"><{$smarty.const._AM_CATALOG_RELLER_MANAGER}></a>*}></div>
+
+<div style="float:right"><{$smarty.const._AM_CATALOG_SORT}>：
+    <select name="weight" id="weight" onchange="location='<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/admin.item.php?start=<{$start}>&amp;weight='+this.options[this.selectedIndex].value">
+        <{foreach item=weight_list key=key from=$weight_list}>
+            <option value="<{$key}>" <{if $key eq $weight}>selected="selected"<{/if}>><{$weight_list}></option>
+        <{/foreach}>
+    </select> 
+</div>
+<br style="clear:both" />
+<{if $showtype eq '1' }>
+<form id="form" name="form" method="post" action="action.item.php">
+    <table class="outer"> 
+        <th><{$smarty.const._AM_CATALOG_NUMBER}></th>
+        <th><{$smarty.const._AM_CATALOG_ITEMNAME}></th>
+        <th><{$smarty.const._AM_CATALOG_COUNTRY}></th>
+        <th><{$smarty.const._AM_CATALOG_BRAND}></th>       
+        <th><{$smarty.const._AM_CATALOG_CAT}></th>
+        <th><{$smarty.const._AM_CATALOG_CREATEDATE}></th>
+        <th><{$smarty.const._AM_CATALOG_ACTION}></th>
+        <{foreach item=item from=$items}>
+        <tr class="<{cycle values='odd, even'}>" >
+            <td><input name="weight[<{$item.item_id}>]" type="text" id="<{$item.item_id}>" value="<{$item.weight}>" size="1" maxlength="4" /></td>
+            <td><a href="../item.php?item_id=<{$item.item_id}>#A"><{$item.item_name}></a></td>
+            <td><{$item.country_name}> </td>
+            <td><{$item.brand_name}></td>                  
+            <td><{$item.cat_secname}></td>
+            <td><{$item.item_buildtime }></td>
+            <td>
+                <a href="admin.item.php?op=edit&amp;item_id=<{$item.item_id}>"><{$smarty.const._AM_CATALOG_EDIT}></a> |
+               <a href="admin.byitems.php?item_id=<{$item.item_id}>"><{$smarty.const._AM_CATALOG_EDITLINKEDITEM}></a> |
+              	<a href="action.item.php?ac=delete&amp;item_id=<{$item.item_id}>"><{$smarty.const._AM_CATALOG_DELETE}></a>           
+            </td>
+        </tr>
+        <{/foreach}>
+        <tr> <td colspan="8"  align="right">
+           <input type="submit" name="button" id="button" value="<{$smarty.const._SUBMIT}>"></td>
+        </tr>       
+    </table>
+</form>
+<{else}>
+<form id="form" name="form" method="post" action="action.item.php">
+    <table class="outer"> 
+        <th><{$smarty.const._AM_CATALOG_NUMBER}></th>
+        <th><{$smarty.const._AM_CATALOG_WEIGHT}></th>
+        <th><{$smarty.const._AM_CATALOG_ITEMNAME}></th>     
+        <th><{$smarty.const._AM_CATALOG_CAT}></th>
+        <th><{$smarty.const._AM_CATALOG_CREATEDATE}></th>
+        <th><{$smarty.const._AM_CATALOG_ACTION}></th>
+        <{foreach item=item from=$items}>
+        <tr class="<{cycle values='odd, even'}>" >
+          <{*  <td><input name="weight[<{$item.item_id}>]" type="text" id="<{$item.item_id}>" value="<{$item.weight}>" size="1" maxlength="4" /></td>*}>
+            <td><{$item.item_id}></td>
+            <td>
+                <input name="weight[<{$item.item_id}>]" type="text" id="<{$item.item_id}>" value="<{$item.weight}>" size="1" maxlength="4" />
+            </td>
+            <td><a href="../item.php?item_id=<{$item.item_id}>#A"><{$item.item_name}></a></td>                    
+            <td><{$item.cat_secname}></td>
+            <td><{$item.create_time }></td>
+            <td>
+                <a href="admin.item.php?op=edit&amp;item_id=<{$item.item_id}>"><{$smarty.const._AM_CATALOG_EDIT}></a> |
+              <a href="admin.byitems.php?item_id=<{$item.item_id}>"><{$smarty.const._AM_CATALOG_EDITLINKEDITEM}></a> |
+              	<a href="action.item.php?ac=delete&amp;item_id=<{$item.item_id}>"><{$smarty.const._AM_CATALOG_DELETE}></a>            
+            </td>
+        </tr>
+        <{/foreach}>
+        <tr> <td colspan="8"  align="right">
+           <input type="submit" name="button" id="button" value="<{$smarty.const._SUBMIT}>"></td>
+        </tr>      
+    </table>
+</form>
+<{/if}>
+<{$pagenav}>

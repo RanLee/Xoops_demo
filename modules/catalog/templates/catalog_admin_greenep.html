@@ -1,0 +1,18 @@
+<a href="admin.greenep.php?op=new"><{$smarty.const._AM_CATALOG_JOINGREENEP}></a>
+<table class="outer">
+
+    <th><{$smarty.const._AM_CATALOG_RANK}></th>
+    <th><{$smarty.const._AM_CATALOG_SYMBOLPIC}></th>
+    <th><{$smarty.const._AM_CATALOG_ACTION}></th>
+     
+    <{foreach item=greeneps from=$greeneps}>
+    <tr  class="<{cycle values='odd, even'}>">
+        <td><{$greeneps.greenep_rank}></td>
+        <td><img src="<{$xoops_url}>/uploads/<{$greeneps.greenep_logo}>" width="80"></td>  
+        <td>
+        <a href="admin.greenep.php?op=edit&amp;greenep_id=<{$greeneps.greenep_id}>"><{$smarty.const._AM_CATALOG_EDIT}></a> | 
+        <a href="admin.greenep.php?op=delete&amp;greenep_id=<{$greeneps.greenep_id}>"><{$smarty.const._AM_CATALOG_DELETE}></a></td> 
+    </tr>
+    <{/foreach}>
+   
+</table>

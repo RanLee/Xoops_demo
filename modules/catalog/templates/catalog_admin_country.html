@@ -1,0 +1,25 @@
+<a href="admin.country.php?op=new"><{$smarty.const._AM_CATALOG_ADDCOUNTRY}></a>
+<form id="form" name="form" method="post" action="admin.country.php">
+<table class="outer">
+    <th><input id="country_check" name="country_check" type="checkbox" onclick="xoopsCheckAll('form','country_check');" /><{$smarty.const._AM_CATALOG_CHECK}></th>
+    <th><{$smarty.const._AM_CATALOG_SORT}></th>
+    <th><{$smarty.const._AM_CATALOG_COUNTRY}></th>
+    <th><{$smarty.const._AM_CATALOG_CREATEDATE}></th>
+    <th><{$smarty.const._AM_CATALOG_ACTION}></th>
+     
+    <{foreach item=countries from=$countries}>
+    <tr  class="<{cycle values='odd, even'}>">
+        <td><input name="country[<{$countries.country_id}>]" id="country[<{$countries.country_id}>]" value="<{$countries.country_id}>"  type="checkbox" /></td>
+        <td><input name="country_weight[<{$countries.country_id}>]" type="text" id="<{$countries.country_id}>" value="<{$countries.country_weight}>" size="1" maxlength="4" /></td>
+        <td><{$countries.country_name}></td>
+        <td><{$countries.add_time}></td>
+        <td><a href="admin.country.php?op=edit&amp;country_id=<{$countries.country_id}>"><{$smarty.const._AM_CATALOG_EDIT}></a> | <a href="admin.country.php?op=delete&amp;country_id=<{$countries.country_id}>"><{$smarty.const._AM_CATALOG_DELETE}></a></td>   
+    </tr>
+    <{/foreach}>
+    <tr>
+        <td colspan="5"><input type="submit" name="button" id="button" value="<{$smarty.const._SUBMIT}>"></td>
+    </tr>
+   
+</table>
+</form>
+<{$pagenav}>

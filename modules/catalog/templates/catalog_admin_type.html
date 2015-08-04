@@ -1,0 +1,23 @@
+<link rel="stylesheet" type="text/css" href="<{$xoops_url}>/modules/catalog/templates/style.css" />
+<div><a href="admin.type.php?op=new"><{$smarty.const._AM_CATALOG_JOINTYPE}></a></div>
+<table class="outer"> 
+    <th align="center"><{$smarty.const._AM_CATALOG_TYPENAME}></th>
+    <th align="center"><{$smarty.const._AM_CATALOG_CONTENTNUM}></th>
+    <th align="center"><{$smarty.const._AM_CATALOG_ACTION}></th>
+    <{foreach item=type from=$types}>
+    <tr class="<{cycle values='odd, even'}>" align="center">
+        <td><{$type.type_name}></td>
+        <td><{$type.count_property}></td>
+        <td align="center">
+            <a href="admin.type_category.php?type_id=<{$type.type_id}>"><{$smarty.const._AM_CATALOG_CONTENTCAT_MANAGER}></a> |
+            <a href="admin.property.php?type_id=<{$type.type_id}>"><{$smarty.const._AM_CATALOG_CONTENT_MANAGER}></a> |
+            <a href="admin.type.php?op=edit&amp;type_id=<{$type.type_id}>"><{$smarty.const._AM_CATALOG_EDIT}></a> |
+          	<a href="action.type.php?ac=delete&amp;type_id=<{$type.type_id}>"><{$smarty.const._AM_CATALOG_DELETE}></a>
+        </td>
+    </tr>
+    <{/foreach}>
+    <tr>
+        <td colspan="3"><input type="submit" name="button" id="button" value="<{$smarty.const._SUBMIT}>"></td>
+    </tr>       
+</table>
+<{$pagenav}>

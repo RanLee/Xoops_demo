@@ -1,0 +1,14 @@
+<ul>
+<{foreach item=child key=key from=$children}>
+<{if $child.child}>
+    <li>
+          <div id="categorycatname"><a href="<{$xoops_url}>/modules/catalog/itemlist.php?cat_id=<{$child.cat_id}>"><{$child.cat_name}></a></div>
+        <{assign var="children" value=$child.child}>
+        <{include file="db:catalog_category_tree.html"}>
+    </li>
+<{else}>
+    <li><div id="childcatname"><a href="<{$xoops_url}>/modules/catalog/itemlist.php?cat_id=<{$child.cat_id}>"><{$child.cat_name}></a></div></li>
+<{/if}>
+
+<{/foreach}>
+</ul>

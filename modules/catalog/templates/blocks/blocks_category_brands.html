@@ -1,0 +1,5 @@
+<link rel="stylesheet" type="text/css" href="<{$xoops_url}>/modules/<{$xoops_dirname}>/templates/style.css" /> 
+
+<{foreachq item=brand from=$block.catbrands}>                             
+<a href="<{$xoops_url}>/modules/catalog/itemlist.php?brand_id=<{$brand.brand_id}>"><{$brand.brand_name}></a>
+<{/foreach}>

@@ -1,0 +1,29 @@
+<link rel="stylesheet" type="text/css" href="<{$xoops_url}>/modules/<{$xoops_dirname}>/templates/style.css" />
+<div id="catalogitemdiv">
+<ul>  
+    <{foreachq item=item from=$block.items}>
+
+    <li <{if $block.current==$item.item_id}> class="currentItem" <{/if}>>
+        <a title="<{$item.item_name}>" href="<{$xoops_url}>/modules/catalog/item.php?item_id=<{$item.item_id}>"><{$item.item_name}></a>           
+    </li>
+    
+    <{/foreach}>
+</ul>
+</div>
+
+
+
+
+
+<{*<style>
+    .currentItem {
+text-align: right;
+background-color: #F3F3F3;
+padding: 2px;        
+    }
+    .currentItem a{
+color: #FF7328;
+font-size: 12px;
+font-weight: bold;    
+    }    
+</style>*}>

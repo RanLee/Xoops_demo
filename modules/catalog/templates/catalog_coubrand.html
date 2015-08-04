@@ -1,0 +1,58 @@
+
+
+
+<div style="padding-top:10px;">
+
+<select name="cat_id" onchange="location='itemlist.php?cat_id='+this.options[this.selectedIndex].value">
+ <option><{$smarty.const._MD_CATALOG_CATEGORIES}></option>
+    <{foreach item=category from=$cat_options key=key}>
+            <option value="<{$key}>" <{if $key eq $cat_id}>selected="selected"<{/if}>><{$category}></option>
+        </optgroup>
+    <{/foreach}> 
+</select>
+</div>
+
+
+<div id="catalog_coubrand">
+<{*<div id="thimg"></div>*}>
+<div id="catalog_coubranddiv">
+<{foreach item=item from=$items}>
+<ul>
+    <li>
+    <div id="itemtop">
+    <div id="itemtopa">
+   
+ 
+ <{*=======顯示圖片設定ON========*}>
+  <div id="itemsborder"><div id="itemsimg"><a title=" <{$item.item_name}><{$smarty.const._MD_CATALOG_VIEWED}><{$item.item_counter}>" href="item.php?item_id=<{$item.item_id}>"><img   src="<{$xoops_url}>/uploads/gallery/thumb_<{$item.item_picture}>" alt="<{$item.item_name}>" /></a></div></div> 
+   </div></div>
+ <{*=======顯示圖片設定OUT========*}>
+ 
+
+
+ 
+
+    
+ <{*=======顯示商品說明文字on========*}>     
+
+   <div id="item_name"><a  title=" <{$item.item_name}><{$item.item_counter}>" href="item.php?item_id=<{$item.item_id}>"><{$item.item_name}></a> <{*<div> 瀏覽人次:<{$item.item_counter}></div>*}></div> <div id="itemrepairtimea"><{$smarty.const._THEME_number}><{$item.item_repairtime}></div> 
+  <{*  <div>建立日期:<{$item.item_buildtime}></div>     
+   *}>
+ 
+ <{*=======顯示商品說明文字out========*}>    
+    </li>
+ 
+</ul>
+
+<{/foreach}>
+</div>
+ <div style="clear:both;"></div>
+
+
+<{*<div id="thimg"><div id="pagenav"><{$pagenav}></div></div>*}>
+
+<div id="pagenav"><{$pagenav}></div>
+<{if $xoops_isadmin}><div id="opnew"><a href="<{$xoops_url}>/modules/catalog/admin/admin.item.php?op=new">【新增商品】</a></div><{/if}>
+
+</div>
+

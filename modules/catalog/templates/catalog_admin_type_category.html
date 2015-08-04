@@ -1,0 +1,24 @@
+<link rel="stylesheet" type="text/css" href="<{$xoops_url}>/modules/catalog/templates/style.css" />
+<h1><{$type.type_name}></h1>
+<div><a href="admin.type_category.php?op=new&amp;type_id=<{$type.type_id}>"><{$smarty.const._AM_CATALOG_JOINCONTENTCAT}></a></div>
+<form id="form" name="form" method="post" action="admin.type_category.php">
+<table class="outer"> 
+    <th width="5%"><{$smarty.const._AM_CATALOG_SORT}></th>
+    <th align="center" width="70%"><{$smarty.const._AM_CATALOG_CONTENTCATNAME}></th>
+    <th align="center" width="15%"><{$smarty.const._AM_CATALOG_ACTION}></th>
+    <{foreach item=type_category from=$type_categories}>
+    <tr class="<{cycle values='odd, even'}>" align="center">
+        <td><input name="tc_weight[<{$type_category.tc_id}>]" type="text" id="<{$type_category.tc_id}>" value="<{$type_category.tc_weight}>" size="1" maxlength="4" /></td>
+        <td><{$type_category.tc_name}></td>
+        <td align="center">
+            <a href="admin.type_category.php?op=edit&amp;tc_id=<{$type_category.tc_id}>&amp;type_id=<{$type.type_id}>"><{$smarty.const._AM_CATALOG_EDIT}></a> |
+          	<a href="action.type_category.php?ac=delete&amp;tc_id=<{$type_category.tc_id}>&amp;type_id=<{$type.type_id}>"><{$smarty.const._AM_CATALOG_DELETE}></a>
+        </td>
+    </tr>
+    <{/foreach}>
+    <tr>
+        <td colspan="3"><input type="submit" name="button" id="button" value="<{$smarty.const._SUBMIT}>"></td>
+    </tr>       
+</table>
+</form>
+<{$pagenav}>

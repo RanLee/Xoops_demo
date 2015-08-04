@@ -1,0 +1,95 @@
+<div id="catalog_comparison">
+<{include file="db:catalog_header.html"}>
+
+<h2><{$smarty.const._MD_CATALOG_DEAR}> <{$name}><{$smarty.const._MD_CATALOG_HELLO}></h2>
+<{if $items}>
+<script type="text/javascript" src="include/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="include/rater-stars/jquery.rater.js"></script>
+<link href="<{$xoops_url}>/modules/catalog/include/rater-stars/jquery.rater.css" rel="stylesheet"/>
+<script language=javascript>
+    function deleteAll()
+    {
+    document.form.action="comparison.php?op=deleteAll"
+    document.form.submit()
+    }
+    function list()
+    {
+    document.form.action="comparison.php#A"
+    document.form.submit()
+    }
+</script>
+
+
+
+
+          
+<form id="form" name="form" method="post" action="comparison.php">
+    <div><input type="button" value='<{$smarty.const._MD_CATALOG_CLEARITEM}>'  onClick="deleteAll()"></div>
+    <table class="outer"> 
+        <th><input id="item_check" name="item_check" type="checkbox" onclick="xoopsCheckAll('form','item_check');" /></th>
+        <th><{$smarty.const._MD_CATALOG_ITEMNAME}></th>
+        <th><{$smarty.const._MD_CATALOG_SHOPPRICE}></th>
+        <th style="width: 50px;" ><{$smarty.const._MD_CATALOG_GREEN}></th>
+        <th><{$smarty.const._MD_CATALOG_SIZENUMBER}></th>                
+        <th style="width: 40px;" ><{$smarty.const._MD_CATALOG_WEIGHT}></th>
+        <th style="width: 40px;"><{$smarty.const._MD_CATALOG_REPAIR}></th>
+        <th><{$smarty.const._MD_CATALOG_EVALUATION}></th>
+        <th style="width: 40px;" ><{$smarty.const._MD_CATALOG_ACTIVE}></th>
+        <{foreach item=item from=$items}>
+        <{*<tr class="<{cycle values='odd, even'}>" >*}>
+        <tr >
+            <td><input name="item[<{$item.item_id}>]" id="item[<{$item.item_id}>]" value="<{$item.item_id}>"  type="checkbox" /></td>
+            <td><a href="../../modules/catalog/item.php?item_id=<{$item.item_id}>#A"><{$item.item_name}></a></td>
+            <td><{$item.shop_price}><{$smarty.const._MD_CATALOG_DOLLOR}></td>
+            <td><{$smarty.const._MD_CATALOG_RANK}><{$item.greenep_id}></td> 
+            <td><{$item.item_size}><{$smarty.const._MD_CATALOG_SIZE}></td>
+            <td><{$item.item_weight}><{$smarty.const._MD_CATALOG_KG}>></td>                                   
+            <td><{$item.item_repairtime}><{$smarty.const._MD_CATALOG_YEAR}></td>
+            <td>
+                <!-- start rate -->
+                <span id="rateform<{$item.item_id}>"> 
+                    <{php}>
+                    for($i=5;$i>0;$i--) echo'<span><input type="radio" name="rate" id="rate'.$i.'" value="'.$i.'" />'.$i.'</span>';
+                    <{/php}>
+                </span>
+                
+                <script type="text/javascript">
+                $(document).ready(function() {
+                var raterOptions	= {    
+                    value : <{$item.rating}>,
+                    enabled : false,
+                	max	: 5,
+                	image :  '<{xoAppUrl /}>/modules/catalog/include/rater-stars/star.gif'
+                }    
+                    $("#rateform<{$item.item_id}>").empty().rater(raterOptions);
+                });
+                </script>
+                
+                <!-- end rate --> 
+            </td>
+            <td><a href="comparison.php?op=delete&amp;item_id=<{$item.item_id}>#A"><{$smarty.const._MD_CATALOG_DELETE}></a></td>
+        </tr>
+        <{/foreach}>
+        <tr>
+            <td colspan="9" align="right">
+                <select name="sort">
+                    <option value="shop_price"><{$smarty.const._MD_CATALOG_BYPRICE}></option>
+                    <option value="greenep_id"><{$smarty.const._MD_CATALOG_GREENEP}></option>
+                    <option value="rating"><{$smarty.const._MD_CATALOG_EVALUATION}></option>
+                    <option value="item_size"><{$smarty.const._MD_CATALOG_SIZENUMBER}></option>       
+                    <option value="item_weight"><{$smarty.const._MD_CATALOG_WEIGHT}></option>
+                    <option value="item_repairtime"><{$smarty.const._MD_CATALOG_REPAIRTIME}></option>      
+                </select>
+                <select name="order">
+                    <option value="asc"><{$smarty.const._MD_CATALOG_BYASC}></option>
+                    <option value="desc"><{$smarty.const._MD_CATALOG_BYDESC}></option>
+                </select>
+                <input type="button" value="<{$smarty.const._SUBMIT}>"  onClick="list()"> 
+            </td>
+        </tr>       
+    </table>
+</form>
+<{else}>
+    <h1 ><{$smarty.const._MD_CATALOG_NOITEMJOIN}></h1>
+<{/if}>
+</div>

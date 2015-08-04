@@ -1,0 +1,63 @@
+<{if $items}>
+    <h2><{$smarty.const._AM_CATALOG_CHOICEITEMOK}></h2>
+        <table class="outer" align="left"> 
+            <th><{$smarty.const._AM_CATALOG_CHECK}></th>
+            <th><{$smarty.const._AM_CATALOG_ITEMNAME}></th>
+            <th><{$smarty.const._AM_CATALOG_BRAND}></th>
+            <{foreach item=items key=key from=$items}>
+            <tr class="<{cycle values='odd, even'}>" >
+                <td><{if $items.checkbox}><input name="item_ids[]" value="<{$items.item_id}>"  type="checkbox" /><{else}><{$smarty.const._AM_CATALOG_LINKED}><{/if}></td>
+                <td><{$items.item_name}></td>
+                <td><{$items.brand}></td>
+            </tr>
+            <{/foreach}>
+            <tr>
+                <td colspan="3">
+                    <input type='hidden' name='cat_id' value='<{$cat_id}>' />
+                    <input type='hidden' name='item_id' value='<{$item_id}>' />
+                    <input type="button" value="<{$smarty.const._AM_CATALOG_LINKEDITEM_AFTERJOIN}>" onClick="insertAll()">
+                </td>
+            </tr>       
+        </table>
+<{else}>
+    <{$smarty.const._AM_CATALOG_CATNOITEMS}>
+<{/if}>
+
+<br />
+
+<h2><{$smarty.const._AM_CATALOG_LINKEDITEM}></h2>
+<table class="outer" align="left"> 
+    <th><{$smarty.const._AM_CATALOG_CHECK}></th>
+    <th><{$smarty.const._AM_CATALOG_ITEMNAME}></th>
+    <th><{$smarty.const._AM_CATALOG_ACTION}></th>
+    <{foreach item=by_item key=key from=$by_items}>
+    <tr class="<{cycle values='odd, even'}>" >
+        <td><input name="item[]" value="<{$key}>"  type="checkbox" /></td>
+        <td><{$by_item}></td>
+        <td><a href="admin.byitems.php?op=delete&amp;by_item_id=<{$key}>&amp;item_id=<{$item_id}>&amp;cat_id=<{$cat_id}>"><{$smarty.const._AM_CATALOG_DELETE}></a></td>
+    </tr>
+    <{/foreach}>
+    <tr>
+        <td colspan="3">
+            <input type='hidden' name='cat_id' value='<{$cat_id}>' />
+            <input type='hidden' name='item_id' value='<{$item_id}>' />
+            <input type="button" value="<{$smarty.const._AM_CATALOG_REMOVECHOICED}>" onClick="deleteAll()">
+        </td>
+    </tr>       
+</table>
+<SCRIPT language=JavaScript>
+$(document).ready(function() {    
+    $("select[id=cat_id]").change( function() {
+        var cat_id = $(this).val();
+        var item_id = "<{$item_id}>";
+        $.ajax({
+        type: "get",
+        url: "ajax.byitems.php",
+        data:   "cat_id=" + cat_id + '&item_id=' + item_id,
+        success: function(msg){
+          	$("#category").html(msg);
+        } 
+        });
+    }); 
+});                                              
+</SCRIPT>

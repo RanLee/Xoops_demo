@@ -1,0 +1,18 @@
+<div id="infopictop">
+<div class="infopic">
+<div class="picbox">
+<UL class="gallery piclist">
+<{foreachq item=item from=$block.items}>  
+ 
+<li ><a href="<{$xoops_url}>/modules/catalog/item.php?item_id=<{$item.item_id}>#A" title="<{if $item.page_title}><{$item.page_title}><{else}><{$item.item_name}><{/if}>" > <img    src="<{$item.item_picture}>" /></a><br /><div id="spanitemname"><a title="<{$item.item_name}>" href="<{$xoops_url}>/modules/catalog/item.php?item_id=<{$item.item_id}>#A"><{$item.item_name}></a></div> 
+<div id="itemrepairtime"><{$smarty.const._THEME_number}><{$item.item_repairtime}></div>
+     </li>    
+<{/foreach}> 
+  
+  
+  </UL></div>
+  <div style="clear: both;"></div>
+<div class="pic_prev"></div>
+<div class="pic_next"></div></div>
+<div id="infopicbuttom"><a title="<{$smarty.const._THEME_Showall}>" href="<{$xoops_url}>/modules/catalog/"><{$smarty.const._THEME_Showall}></a></div>
+</div>

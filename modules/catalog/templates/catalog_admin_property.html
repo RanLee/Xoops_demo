@@ -1,0 +1,24 @@
+<link rel="stylesheet" type="text/css" href="<{$xoops_url}>/modules/catalog/templates/style.css" />
+<h1><{$type.type_name}></h1>
+<div><a href="admin.property.php?op=new&amp;type_id=<{$type.type_id}>"><{$smarty.const._AM_CATALOG_JOINCONTENT}></a></div>
+<form id="form" name="form" method="post" action="admin.property.php?type_id=<{$type.type_id}>">
+<table class="outer"> 
+    <th width="5%"><{$smarty.const._AM_CATALOG_SORT}></th>
+    <th align="center" width="70%"><{$smarty.const._AM_CATALOG_CONTENTNAME}></th>
+    <th align="center" width="15%"><{$smarty.const._AM_CATALOG_ACTION}></th>
+    <{foreach item=property from=$properties}>
+    <tr class="<{cycle values='odd, even'}>" align="center">
+        <td><input name="property_weight[<{$property.property_id}>]" type="text" id="<{$property.property_id}>" value="<{$property.property_weight}>" size="1" maxlength="4" /></td>
+        <td><{$property.property_name}></td>
+        <td align="center">
+            <a href="admin.property.php?op=edit&amp;property_id=<{$property.property_id}>&amp;type_id=<{$type.type_id}>"><{$smarty.const._AM_CATALOG_EDIT}></a> |
+          	<a href="action.property.php?ac=delete&amp;property_id=<{$property.property_id}>&amp;type_id=<{$type.type_id}>"><{$smarty.const._AM_CATALOG_DELETE}></a>
+        </td>
+    </tr>
+    <{/foreach}>
+    <tr>
+        <td colspan="3"><input type="submit" name="button" id="button" value="<{$smarty.const._SUBMIT}>"></td>
+    </tr>       
+</table>
+</form>
+<{$pagenav}>

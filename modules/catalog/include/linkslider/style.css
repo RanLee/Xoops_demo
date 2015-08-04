@@ -1,0 +1,176 @@
+/*相關商品與比較商品的樣式
+*相關商品的樣式為第5行到第89行
+*比較商品的樣式為第91行到第175行
+*/
+
+.jcarousel-skin-linksliderL {
+	height: 220px;
+	overflow: hidden;
+	width: 715px;
+}
+.jcarousel-skin-linksliderL .jcarousel-container {
+	position: relative;
+}
+.jcarousel-skin-linksliderL .jcarousel-clip {
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+	z-index: 2;
+}
+.jcarousel-skin-linksliderL .jcarousel-list {
+	left: 0;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+	top: 0;
+	z-index: 1;
+}
+.jcarousel-skin-linksliderL .jcarousel-item {
+	float: left;
+	list-style: none outside none;
+	height: 177px;
+	width: 130px;
+}
+.jcarousel-skin-linksliderL .jcarousel-container-horizontal {
+	height: 180px;
+	overflow: hidden;
+	padding: 10px 40px;
+	width: 630px;
+	border: 1px solid #B8B8B8;
+}
+.jcarousel-skin-linksliderL .jcarousel-clip-horizontal {
+	height: 190px;
+	overflow: hidden;
+	width: 630px;
+}
+.jcarousel-skin-linksliderL .jcarousel-item {
+	height: 180px;
+	width: 172px;
+	margin:0;
+	margin-right:10px;
+}
+.jcarousel-skin-linksliderL .jcarousel-item img {
+	 height: 161px;  
+/*  height: auto;*/
+	width: 172px; 
+}
+.jcarousel-skin-linksliderL .jcarousel-item #imgdiv {
+	height: 161px;
+	overflow: hidden;
+	border: 1px solid #FF8810;
+}
+.jcarousel-skin-linksliderL .jcarousel-item #imgdiv:hover {
+	border: 1px solid #FF7024;
+}
+.jcarousel-skin-linksliderL .jcarousel-item-placeholder {
+	background: none repeat scroll 0 0 #FFFFFF;
+	color: #000000;
+}
+.jcarousel-skin-linksliderL .jcarousel-next-horizontal {
+	background: url("arrow.png") no-repeat scroll 0 0 transparent;
+	cursor: pointer;
+	height: 36px;
+	position: absolute;
+	right: 5px;
+	top: 70px;
+	width: 37px;
+}
+.jcarousel-skin-linksliderL .jcarousel-next-horizontal:hover, .jcarousel-skin-linksliderL .jcarousel-next-horizontal:active {
+	background-position: 0 -36px;
+}
+.jcarousel-skin-linksliderL .jcarousel-prev-horizontal {
+	background: url("arrow.png") no-repeat scroll 0 -72px transparent;
+	cursor: pointer;
+	height: 36px;
+	left: 5px;
+	position: absolute;
+	top: 70px;
+	width: 37px;
+}
+.jcarousel-skin-linksliderL .jcarousel-prev-horizontal:hover, .jcarousel-skin-linksliderL .jcarousel-prev-horizontal:active {
+	background-position: 0 -108px;
+}
+/*以下是比较商品样式*/
+.jcarousel-skin-linksliderR {
+	height: 165px;
+	overflow: hidden;
+	width: 590px;
+}
+.jcarousel-skin-linksliderR .jcarousel-container {
+	position: relative;
+}
+.jcarousel-skin-linksliderR .jcarousel-clip {
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+	z-index: 2;
+}
+.jcarousel-skin-linksliderR .jcarousel-list {
+	left: 0;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+	top: 0;
+	z-index: 1;
+}
+.jcarousel-skin-linksliderR .jcarousel-item {
+	float: left;
+	list-style: none outside none;
+	height: 137px;
+	width: 120px;
+}
+.jcarousel-skin-linksliderR .jcarousel-container-horizontal {
+	height: 140px;
+	overflow: hidden;
+	padding: 10px 40px;
+	width: 450px;
+	border: 1px solid #B8B8B8;
+}
+.jcarousel-skin-linksliderR .jcarousel-clip-horizontal {
+	height: 150px;
+	overflow: hidden;
+	width: 450px;
+}
+.jcarousel-skin-linksliderR .jcarousel-item {
+	height: 137px;
+	width: 120px;
+	margin:0;
+	margin-right:10px;
+}
+.jcarousel-skin-linksliderR .jcarousel-item img {
+	height: 134px;
+	width: 120px;
+	border: 1px solid #B2D086;
+}
+.jcarousel-skin-linksliderR .jcarousel-item-placeholder {
+	background: none repeat scroll 0 0 #FFFFFF;
+	color: #000000;
+}
+.jcarousel-skin-linksliderR .jcarousel-next-horizontal {
+	background: url("arrow.png") no-repeat scroll 0 0 transparent;
+	cursor: pointer;
+	height: 36px;
+	position: absolute;
+	right: 5px;
+	top: 70px;
+	width: 37px;
+}
+.jcarousel-skin-linksliderR .jcarousel-next-horizontal:hover, .jcarousel-skin-linksliderR .jcarousel-next-horizontal:active {
+	background-position: 0 -36px;
+}
+.jcarousel-skin-linksliderR .jcarousel-prev-horizontal {
+	background: url("arrow.png") no-repeat scroll 0 -72px transparent;
+	cursor: pointer;
+	height: 36px;
+	left: 5px;
+	position: absolute;
+	top: 70px;
+	width: 37px;
+}
+.jcarousel-skin-linksliderR .jcarousel-prev-horizontal:hover, .jcarousel-skin-linksliderR .jcarousel-prev-horizontal:active {
+	background-position: 0 -108px;
+}

@@ -1,0 +1,30 @@
+
+<div id="Product">
+<{*<div id="Productth"><h3><a title="<{$smarty.const._THEME_TITLE}>"  href="<{$xoops_url}>/modules/catalog/"><{$smarty.const._THEME_TITLE}></a></h3></div>*}>
+<div id="center">
+
+<ul>  
+    <{foreachq item=item from=$block.items}>
+    <!-- <{$n++}>-->   
+    <li>
+
+    
+      <div id="caption"><div id="odd"><a title="<{$item.item_name}>" href="<{$xoops_url}>/modules/catalog/item.php?item_id=<{$item.item_id}>#A"><{if $item.page_title}><{$item.page_title}><{else}><{$item.item_name}><{/if}></a></div></div>
+      
+       
+    
+     <div id="itemitem_picture">    
+     <div id="coloritem"></div>    
+     <div id="itemitem_picture02"> <a title="<{if $item.page_title}><{$item.page_title}><{else}><{$item.item_name}><{/if}>" href="<{$xoops_url}>/modules/catalog/item.php?item_id=<{$item.item_id}>#A"><{if $item.page_title}><{$item.page_title}><{else}><{$item.item_name}><{/if}></a></div> 
+       
+       
+        <div id="itemitem_picturea" >
+ <img src="<{$item.item_picture}>" /></div></div>
+       
+
+    
+    <!-- end rate -->  
+    </li>
+    <{/foreach}>
+</ul>
+</div></div>

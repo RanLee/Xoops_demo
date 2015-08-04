@@ -1,0 +1,29 @@
+
+
+
+<div class="breadcrumbs">
+    <{foreach item=itm from=$xoBreadcrumbs name=bcloop}>
+   
+    <{if  $smarty.foreach.bcloop.iteration eq '1'}>  
+   
+      <{if $itm.link}>
+            <a href="<{xoAppUrl /}>modules/<{$xoops_dirname}>" title="<{$itm.title}>"><{$smarty.const._MD_CATALOG_Return}><{$itm.title}><{$smarty.const._MD_CATALOG_index}></a>
+        <{else}>
+            <span class="breadcrumbs_title"><{$itm.repairtime}>&nbsp;<{$itm.title}></span>
+        <{/if}>        
+   
+   <{else}>
+   
+   
+      <{if $itm.link}>
+        <a href="<{$itm.link}>" title="<{$itm.title}>"><{$itm.title}></a> 
+        <{else}>
+            <span class="breadcrumbs_title"><{$itm.repairtime}>&nbsp;<{$itm.title}></span>
+        <{/if}>
+           <{/if}>
+        
+        <{if !$smarty.foreach.bcloop.last}>
+            &raquo;
+        <{/if}>
+    <{/foreach}>
+</div>

@@ -1,0 +1,1 @@
+tinyMCE.addI18n('tw_utf8.simple',{"cleanup_desc":"整理原始碼","redo_desc":"重做 (Ctrl+Y)","undo_desc":"復原 (Ctrl+Z)","numlist_desc":"新增/移除有序清單","bullist_desc":"新增/移除項目符號","striketrough_desc":"刪除線","underline_desc":"底線 (Ctrl+U)","italic_desc":"斜體 (Ctrl+I)","bold_desc":"粗體 (Ctrl+B)"});

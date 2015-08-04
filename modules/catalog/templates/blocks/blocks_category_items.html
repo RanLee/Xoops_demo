@@ -1,0 +1,42 @@
+<link rel="stylesheet" type="text/css" href="<{$xoops_url}>/modules/<{$xoops_dirname}>/templates/style.css" />
+<script type="text/javascript" src="<{$xoops_url}>/modules/catalog/include/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="<{$xoops_url}>/modules/catalog/include/rater-stars/jquery.rater.js"></script>
+<link href="<{$xoops_url}>/modules/catalog/include/rater-stars/jquery.rater.css" rel="stylesheet"/>
+<{assign var="n" value = 0}>
+
+<table> 
+<tr>  
+    <{foreachq item=item from=$block.items}>
+    <!-- <{$n++}>-->   
+    <td>
+    <{if $n == 1}><img src="<{$xoops_url}>/uploads/smil3dbd4bf386b36.gif" width="10" style="vertical-align:top;"/><{/if}>
+    <{if $n == 2}><img src="<{$xoops_url}>/uploads/smil3dbd4d4e4c4f2.gif" width="10" style="vertical-align:top;"/><{/if}>
+    <{if $n == 3}><img src="<{$xoops_url}>/uploads/smil3dbd4d75edb5e.gif" width="10" style="vertical-align:top;"/><{/if}>
+        <a href="<{$xoops_url}>/modules/catalog/item.php?item_id=<{$item.item_id}>"><img src="<{$item.item_picture}>" width="100" height="80"/></a><br />
+        <a href="<{$xoops_url}>/modules/catalog/item.php?item_id=<{$item.item_id}>"><{if $item.page_title}><{$item.page_title}><{else}><{$item.item_name}><{/if}></a><br />
+
+    <!-- start rate -->
+    <div id="rateform<{$item.item_id}>"> 
+        <{php}>
+        for($i=5;$i>0;$i--) echo'<span><input type="radio" name="rate" id="rate'.$i.'" value="'.$i.'" />'.$i.'</span>';
+        <{/php}>
+    </div>
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+    var raterOptions	= {    
+        value : <{$item.rating}>,
+        enabled : false,
+    	max	: 5,
+    	image :  '<{xoAppUrl /}>/modules/catalog/include/rater-stars/star.gif'
+    }    
+        $("#rateform<{$item.item_id}>").empty().rater(raterOptions);
+    
+    });
+    </script>
+    
+    <!-- end rate -->                
+    </td>
+    <{/foreach}>
+</tr>
+</table>

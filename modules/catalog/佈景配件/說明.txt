@@ -1,0 +1,2 @@
+1、吧catalog.css引入到style.css中   @import url(catalog.css); 
+2、吧img資料夾丟到佈景的根目錄中。

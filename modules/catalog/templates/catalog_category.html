@@ -1,0 +1,269 @@
+<{*<script src="<{$xoops_url}>/modules/catalog/templates/swfobject_source.js" ></script>*}>
+
+<div style="padding-top:10px;">
+
+<select name="cat_id" onchange="location='itemlist.php?cat_id='+this.options[this.selectedIndex].value">
+<{* <option><{$smarty.const._MD_CATALOG_CATEGORIES}></option>*}>
+    <{foreach item=category from=$cat_options key=key}>
+            <option value="<{$key}>" <{if $key eq $cat_id}>selected="selected"<{/if}>><{$category}></option>
+        </optgroup>
+    <{/foreach}> 
+</select>
+</div>
+
+
+ <{*   <script type="text/javascript" src="include/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="include/rater-stars/jquery.rater.js"></script>
+    <link href="include/rater-stars/jquery.rater.css" rel="stylesheet"/>
+    
+<div id="catalogcategory">
+<h2><{$smarty.const._MD_CATALOG_SHOWITEM}></h2>
+
+<{include file="db:catalog_header.html"}>
+
+<div style="float:right">
+ <select name="seltype"   onchange="location='<{$xoops_url}>/modules/catalog/itemlist.php?cat_id=<{$cat_id}>&amp;brand_id=<{$brand_id}>&amp;seltype='+this.options[this.selectedIndex].value+'&selweight=<{$selweight}>#A'">
+        <{foreach item=seltype_list key=key from=$seltype_list}>
+            <option value="<{$key}>" <{if $key eq $seltype}>selected="selected"<{/if}>><{$seltype_list}></option>
+        <{/foreach}>
+    </select>
+    <select name="selweight"  onchange="location='<{$xoops_url}>/modules/catalog/itemlist.php?cat_id=<{$cat_id}>&amp;brand_id=<{$brand_id}>&amp;selweight='+this.options[this.selectedIndex].value+'&seltype=<{$seltype}>#A'">
+        <{foreach item=selweight_list key=key from=$selweight_list}>
+            <option value="<{$key}>" <{if $key eq $selweight}>selected="selected"<{/if}>><{$selweight_list}></option>
+        <{/foreach}>
+    </select>         
+</div>
+
+<select name="cat_id" onchange="location='itemlist.php?cat_id='+this.options[this.selectedIndex].value">
+    <{foreach item=category from=$categories}>
+            <option value="<{$category.cat_id}>" <{if $category.cat_id eq $cat_id}>selected="selected"<{/if}>><{$category.cat_name}></option>
+            <{if $category.child}>
+            <{foreach item=child key=key from=$category.child}>
+            <option value="<{$key}>" <{if $key eq $cat_id}>selected="selected"<{/if}>>-- <{$child.cat_name}></option>
+            <{/foreach}>
+            <{/if}>
+        </optgroup>
+    <{/foreach}> 
+</select>
+
+
+
+<{foreach item=items from=$items}>
+<div >
+<table >
+  <tr>
+    <th colspan="2"> <h3><a title="<{$items.item_name}>" href="<{$xoops_url}>/modules/catalog/item.php?item_id=<{$items.item_id}>#A"><{$items.item_name}></a></h3></th> 
+  </tr>
+  <tr>
+    <td id="odd">  <img src="<{$xoops_url}>/uploads/gallery/<{$items.item_picture}>" width="<{$items_width}>" />
+    <div id="itemsitemid"><a href="<{$xoops_url}>/modules/catalog/item.php?item_id=<{$items.item_id}>#A"><{$smarty.const._MD_CATALOG_DETAILS}></a></div>
+  
+  
+                 </td>
+    <td id="even"><div >
+    
+    
+<!-- start  -->
+<script type="text/javascript">
+$(document).ready(function() {
+var raterOptions	= {    
+    value : <{$items.type1}>,
+    enabled : false,
+	max	: 5,
+	image :  '<{xoAppUrl /}>/modules/catalog/include/rater-stars/star.gif'
+}    
+    $("#rateformtype1<{$items.item_id}>").empty().rater(raterOptions);
+
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+var raterOptions	= {    
+    value : <{$items.type2}>,
+    enabled : false,
+	max	: 5,
+	image :  '<{xoAppUrl /}>/modules/catalog/include/rater-stars/star.gif'
+}    
+    $("#rateformtype2<{$items.item_id}>").empty().rater(raterOptions);
+
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+var raterOptions	= {    
+    value : <{$items.type3}>,
+    enabled : false,
+	max	: 5,
+	image :  '<{xoAppUrl /}>/modules/catalog/include/rater-stars/star.gif'
+}    
+    $("#rateformtype3<{$items.item_id}>").empty().rater(raterOptions);
+
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+var raterOptions	= {    
+    value : <{$items.type4}>,
+    enabled : false,
+	max	: 5,
+	image :  '<{xoAppUrl /}>/modules/catalog/include/rater-stars/star.gif'
+}    
+    $("#rateformtype4<{$items.item_id}>").empty().rater(raterOptions);
+
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+var raterOptions	= {    
+    value : <{$items.type5}>,
+    enabled : false,
+	max	: 5,
+	image :  '<{xoAppUrl /}>/modules/catalog/include/rater-stars/star.gif'
+}    
+    $("#rateformtype5<{$items.item_id}>").empty().rater(raterOptions);
+
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+var raterOptions	= {    
+    value : <{$items.rating}>,
+    enabled : false,
+	max	: 5,
+	image :  '<{xoAppUrl /}>/modules/catalog/include/rater-stars/star.gif'
+}    
+    $("#rateformtype6<{$items.item_id}>").empty().rater(raterOptions);
+
+});
+</script>
+
+
+<div id="itemradio">
+    <ul >
+    <li><div id="itemradioitem"> <span id="rateformtype1<{$items.item_id}>"> 
+                </span></div><{$smarty.const._MD_CATALOG_EFFICIENCYVALUE}>：<{$items.type1}>
+               
+    </li>
+    <li>  <div id="itemradioitem">  <span id="rateformtype2<{$items.item_id}>"> 
+                </span>   </div> <{$smarty.const._MD_CATALOG_FACEVALUE}>：<{$items.type2}>
+            
+    </li>
+    <li>  <div id="itemradioitem"> <span id="rateformtype3<{$items.item_id}>"> 
+                </span>  </div><{$smarty.const._MD_CATALOG_PRICEVALUE}>：<{$items.type3}>
+              
+    </li>
+    <li> <div id="itemradioitem"> <span id="rateformtype4<{$items.item_id}>"> 
+                </span>   </div><{$smarty.const._MD_CATALOG_SIZEBYWEIGHTVALUE}>：<{$items.type4}>
+                 
+    </li>
+    <li> <div id="itemradioitem"> <span id="rateformtype5<{$items.item_id}>"> 
+                </span>  </div><{$smarty.const._MD_CATALOG_AFTERSERVICEVALUE}>：<{$items.type5}> 
+                
+    </li>
+    <li><div id="itemradioitem">  <span id="rateformtype6<{$items.item_id}>"> 
+                </span>   </div><{$smarty.const._MD_CATALOG_RATINGVALUE}>：<{$items.rating}>
+               
+    </li>
+    <li ><{if $xoops_isadmin}> <div id="itemadmin">  <a href="admin/admin.item.php?op=edit&amp;item_id=<{$items.item_id}>"><{$smarty.const._MD_CATALOG_EDIT}></a> |
+              <a href="admin/action.item.php?ac=delete&amp;item_id=<{$items.item_id}>"><{$smarty.const._MD_CATALOG_DELETE}></a> |
+             <a href="admin/admin.byitems.php?item_id=<{$items.item_id}>"><{$smarty.const._MD_CATALOG_EDITRELATIONITEM}></a> 	</div> 
+                 <{/if}><{$smarty.const._MD_CATALOG_JOINPEOPLENUM}>  : <{$items.rates}></li>
+</ul>
+
+</div>    
+
+<!-- end rate -->
+
+</div>
+</td>
+  </tr>
+</table>  
+</div>      
+<{/foreach}>
+<{$pagenav}>
+</div>*}>
+
+
+
+
+<{*<h2><{$smarty.const._MD_CATALOG_SHOWITEM}></h2>*}>
+
+<div id="catalog_header"><{include file="db:catalog_header.html"}></div>
+
+
+
+
+<{if $cattext}>
+<div id="cattextcc">
+<{$cattext}> 
+</div>
+<{/if}>
+
+  <{if $xoops_isadmin}>
+    <div id="cattextadmin"><a target='_blank' href="<{xoAppUrl /}>modules/catalog/admin/admin.category.php?op=edit&cat_id=<{$cat_id}> ">[<{$smarty.const._THEME_cattextadmin}>]</a></div>
+    <{/if}>
+
+
+<{*<select name="cat_id" onchange="location='itemlist.php?cat_id='+this.options[this.selectedIndex].value">
+    <{foreach item=category from=$cat_options key=key}>
+            <option value="<{$key}>" <{if $key eq $cat_id}>selected="selected"<{/if}>><{$category}></option>
+        </optgroup>
+    <{/foreach}> 
+</select>*}>
+
+<div id="catalog_coubrand">
+<div id="catalog_coubranddiv">
+<{foreach item=items from=$items}>
+<ul>
+
+    <li>
+      <div id="itemtop">
+    <div id="itemtopa">
+ 
+    
+<{*=======顯示圖片與文字設定ON========*}>        
+<{* <div id="item_name"><a href="<{$xoops_url}>/modules/catalog/item.php?item_id=<{$items.item_id}>#A"><{$items.item_name}></a></div> 
+   <div>建立日期:<{$items.item_buildtime}></div> 
+  <div><{$smarty.const._MD_CATALOG_SCANNUMS}>:<{$items.item_counter}></div> *}>
+   
+    <div id="itemsborder"><div title="<{$items.item_name}>" id="itemsimg"><a href="<{$xoops_url}>/modules/catalog/item.php?item_id=<{$items.item_id}>#A"> <img      src="<{$xoops_url}>/uploads/gallery/<{$items.item_picture}>" width="<{$items_width}>" /></a></div></div>
+<{*=======顯示圖片與文字設定OUT========*}> 
+   
+ 
+ 
+ 
+     <{*=======顯示Flash設定ON========*}>    
+<{*
+<div title="<{$items.item_name}>" id="flashFCI<{$items.item_id}>"></div>
+ <SCRIPT type=text/javascript> 	
+   var s1 = new SWFObject('<{xoImgUrl modules/catalog/templates/}>catalogimg.swf"', "mymovie1", "229", "168", "5", "#ffffff");   
+   s1.addParam("wmode", "transparent");
+   s1.addParam("AllowscriptAccess", "sameDomain");   
+   s1.addVariable("xoops_flashurl","<{$xoops_url}>/uploads/gallery/thumb_<{$items.item_picture}>");
+   s1.addVariable("xoops_Buttonurl","<{$xoops_url}>/modules/catalog/item.php?item_id=<{$items.item_id}>");
+   s1.addVariable("ButtonOpensstyle","_self");  
+  s1.write("flashFCI<{$items.item_id}>");    
+ </SCRIPT>
+ *}>
+ <{*=======顯示Flash設定OUT========*}>    
+    
+<div id="item_name"><a title="<{$items.item_name}>" href="<{$xoops_url}>/modules/catalog/item.php?item_id=<{$items.item_id}>#A"><{$items.item_name}></a>
+
+<{*<div> 瀏覽人次:<{$item.item_counter}></div>*}></div>   <div id="itemrepairtimea"><{$smarty.const._THEME_number}><{$items.item_repairtime}></div>  
+ </div>  </div>  
+ 
+    </li>
+  
+</ul>
+<{/foreach}>
+</div>
+<div style="clear:both;"></div>
+
+<{*<div id="thimg"><div id="pagenav"><{$pagenav}></div></div>*}>
+<div id="pagenav"><{$pagenav}></div>
+
+<{if $xoops_isadmin}><div id="opnew">
+<a href="<{$xoops_url}>/modules/catalog/admin/admin.item.php?op=new&&cat_id=<{$smarty.get.cat_id}>">【<{$smarty.const._MD_CATALOG_ADDITEM}>】</a></div><{/if}>
+
+</div>

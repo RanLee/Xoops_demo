@@ -1,0 +1,22 @@
+<{if $brand}>
+<div id="catalog_brandinfo">
+<h2><a title="<{$smarty.const._MD_CATALOG_BACKBRANLIST}>" href="<{$xoops_url}>/modules/catalog/index.php#A"><{$smarty.const._MD_CATALOG_BACKBRANLIST}></a></h2>
+<h3><{$brand.brand_name}></h3>
+<{if $xoops_isadmin}>
+<div >【 <a href="admin/admin.brand.php?op=edit&amp;brand_id=<{$brand.brand_id}>"><{$smarty.const._MD_CATALOG_EDIT}></a> | <a href="admin.brand.php?op=delete&amp;brand_id=<{$brand.brand_id}>"><{$smarty.const._MD_CATALOG_DELETE}></a>】</div>
+ <{/if}>  
+<p><{$brand.brand_description}></p>
+<div id="but"><a title="<{$smarty.const._MD_CATALOG_LOOKITEMLIST}>" href="<{$xoops_url}>/modules/catalog/itemlist.php?brand_id=<{$brand.brand_id}>#A"><{$smarty.const._MD_CATALOG_LOOKITEMLIST}></a></div>
+</div>
+<{else}>
+<{foreach item=country from=$countries}>
+<div>
+    <h2><{$country.country_name}></h2>
+    <div>
+        <{foreach item=brand from=$country.brands}>
+            <a href='<{$xoops_url}>/modules/catalog/index.php?brand_id=<{$brand.brand_id}>'><{$brand.brand_name}></a>
+        <{/foreach}>
+    </div>
+</div>
+<{/foreach}>
+<{/if}>

@@ -1,0 +1,42 @@
+<{*<div><{$smarty.const._AM_CATALOG_CHOICEVIEW}>：
+<select name="preview" id="preview" onchange="location='<{$xoops_url}>/modules/catalog/admin/admin.index.php?op='+this.options[this.selectedIndex].value">
+    <option value="catagory" <{if $op eq 'catagory'}>selected="selected"<{/if}>><{$smarty.const._AM_CATALOG_CAT}></option>    
+    <{if $showtype eq '1'}><option value="country" <{if $op eq 'country'}>selected="selected"<{/if}>><{$smarty.const._AM_CATALOG_COUNTRY}></option> <{/if}> 
+</select> 
+</div>*}>
+<{*
+<{if $op eq 'country'}>
+<table>
+    <th><{$smarty.const._AM_CATALOG_COUNTRY}></th>
+    <th><{$smarty.const._AM_CATALOG_BRAND}></th>
+    <th><{$smarty.const._AM_CATALOG_ITEMNUM}></th>
+    <th><{$smarty.const._AM_CATALOG_NEWITEM}></th>
+    <th><{$smarty.const._AM_CATALOG_CREATEDATE}></th>
+<{foreach item=country from=$countries}>       
+<tr  class="<{cycle values='odd, even'}>">
+    <td><{$country.country_name}></td>
+    <td><{foreach item=brand from=$country.brands}><{$brand.brand_name}>  <{/foreach}></td> 
+    <td><{$country.count}></td> 
+    <td><{$country.item_name}></td> 
+    <td><{$country.item_time}></td>  
+</tr>
+<{/foreach}>
+</table>
+<{else}>
+ <table>
+    <th><{$smarty.const._AM_CATALOG_CAT}></th>
+    <th><{$smarty.const._AM_CATALOG_ITEMNUM}></th>
+    <th><{$smarty.const._AM_CATALOG_NEWITEM}></th>
+    <th><{$smarty.const._AM_CATALOG_CREATEDATE}></th>
+<{foreach item=category from=$categories}>       
+<tr  class="<{cycle values='odd, even'}>">
+    <td><{$category.cat_name}></td>
+    <td><{$category.count}></td> 
+    <td><{$category.item_name}>888</td> 
+    <td><{$category.item_time}></td>  
+</tr>
+<{/foreach}>
+</table>
+<{/if}>
+*}>
+<{$pagenav}>

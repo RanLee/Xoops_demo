@@ -1,0 +1,48 @@
+<{*<div id="magnifier">
+<div id="img01"><a title="<{$smarty.const._THEME_MANI01}>" href="<{$xoops_url}>/modules/catalog"/ ><{$smarty.const._THEME_MANI01}></a></div>
+<div id="img02"><a title="<{$smarty.const._THEME_MANI01}>" href="<{$xoops_url}>/modules/catalog"/ ><{$smarty.const._THEME_MANI01}></a></div>
+</div>*}>
+
+<div id="itemsspecial">
+<div id="blocksitemsspecialtop"></div>
+<div id="blocksitemsspecial">
+<div id="blocksitemsspeciala">
+<div id="demo">
+<div id="indemo">
+<div id="demo1">
+
+
+ <{foreachq item=item from=$block.items}>
+<a title="<{if $item.page_title}><{$item.page_title}><{else}><{$item.item_name}><{/if}>" href="<{$xoops_url}>/modules/catalog/item.php?item_id=<{$item.item_id}>#A"><{*<{if $item.page_title}><{$item.page_title}><{else}><{$item.item_name}><{/if}>*}> <img onmouseout=fade_out(this); onmouseover=fade_in(this); style="FILTER:alpha(opacity=80)"   src="<{$item.item_picture}>" /></a>
+ <{/foreach}>
+
+
+
+ </div>  
+
+<div id="demo2"></div>
+</div>
+</div>  
+</div> </div> 
+<div id="blocksitemsspecialbottom"></div>  
+</div>
+<script>
+<!--
+var speed=5;
+var tab=document.getElementById("demo");
+var tab1=document.getElementById("demo1");
+var tab2=document.getElementById("demo2");
+tab2.innerHTML=tab1.innerHTML;
+function Marquee(){
+if(tab2.offsetWidth-tab.scrollLeft<=0)
+tab.scrollLeft-=tab1.offsetWidth
+else{
+tab.scrollLeft++;
+}
+}
+var MyMar=setInterval(Marquee,speed);
+tab.onmouseover=function() {clearInterval(MyMar)};
+tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+-->
+</script>
+

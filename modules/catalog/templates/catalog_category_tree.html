@@ -1,0 +1,37 @@
+
+<{*
+<{foreach item=child key=key from=$children}>   
+<{if $child.child}>
+    <li id="lib">
+          <div id="categorycatname"><a title="<{$child.cat_name}>" class="menuSub" href="<{$xoops_url}>/modules/catalog/itemlist.php?cat_id=<{$child.cat_id}>"><{$child.cat_name}></a></div>
+        <{assign var="children" value=$child.child}>
+        
+        <{include file="db:catalog_category_tree.html"}>
+    </li>
+<{else}>
+    <li id="lib"><div id="childcatname"><a title="<{$child.cat_name}>"  class="menuSub" href="<{$xoops_url}>/modules/catalog/itemlist.php?cat_id=<{$child.cat_id}>"><{$child.cat_name}></a></div></li>
+<{/if}>
+
+<{/foreach}>
+</ul>
+*}>
+
+<ul>
+
+ <a class="catalomenuMaina" title="<{$category.cat_name}>" href="<{$xoops_url}>/modules/catalog/itemlist.php?cat_id=<{$category.cat_id}>"><{$category.cat_name}></a>
+
+ 
+ 
+<{foreach item=child key=key from=$children}>
+<{if $child.child}>
+    <li id="lib">
+          <div id="categorycatname"><a title="<{$child.cat_name}>" href="<{$xoops_url}>/modules/catalog/itemlist.php?cat_id=<{$child.cat_id}>"><{$child.cat_name}></a></div>
+        <{assign var="children" value=$child.child}>
+        <{include file="db:catalog_category_tree.html"}>
+    </li>
+<{else}>
+    <li id="lib"><div id="childcatname"><a title="<{$child.cat_name}>" href="<{$xoops_url}>/modules/catalog/itemlist.php?cat_id=<{$child.cat_id}>"><{$child.cat_name}></a></div></li>
+<{/if}>
+
+<{/foreach}>
+</ul>

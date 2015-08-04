@@ -1,0 +1,847 @@
+
+<!-- saved from url=(0022)http://internet.e-mail -->
+<{*<script type="text/javascript" src="include/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="include/rater-stars/jquery.rater.js"></script>*}>
+<!--
+ <img style="float:left; margin-right:20px" src="<{$item.item_picture}>" width="100" />
+-->
+<div id="catalogitem">
+<div id="selectedIndex">
+<select name="cat_id" onchange="location='itemlist.php?cat_id='+this.options[this.selectedIndex].value">
+ <option><{$smarty.const._MD_CATALOG_CATEGORIES}></option>
+    <{foreach item=category from=$cat_options key=key}>
+            <option value="<{$key}>" <{if $key eq $cat_id}>selected="selected"<{/if}>><{$category}></option>
+        </optgroup>
+    <{/foreach}> 
+</select>
+</div>
+<{include file="db:catalog_header.html"}>
+<{*<br />
+<div id="comparison"><h2><a title="<{$smarty.const._MD_CATALOG_JOINCOMPARE}>" href="comparison.php#A"><{$smarty.const._MD_CATALOG_ITEMCOMPARE}></a></h2></div>*}>
+
+
+
+<{*<h3><{$smarty.const._MD_CATALOG_ITEMPICTURE}></h3>*}>
+<!-- start image -->
+<!-- start  jquery-lightbox-0.5 js and css  --> 
+<link rel="stylesheet" type="text/css" href="./include/jquery-lightbox/css/lightbox.css" />
+<script type="text/javascript" src="./include/jquery-lightbox/jquery.lightbox.js"></script>
+<script>
+	$(document).ready(function(){
+		$(".lightbox").lightbox();
+	});
+
+</script>
+<!-- end  jquery-lightbox-0.5 js and css   -->
+ 
+<!--
+  jCarousel library
+-->
+<script type="text/javascript" src="./include/jcarousel/jquery.jcarousel.pack.js"></script>
+<!--
+  jCarousel core stylesheet
+-->
+<link rel="stylesheet" type="text/css" href="./include/jcarousel/jquery.jcarousel.css" />
+<!--
+  jCarousel skin stylesheet
+-->
+<link rel="stylesheet" type="text/css" href="./include/jcarousel/skins/tango/skin.css" />
+
+<script type="text/javascript">  
+jQuery(document).ready(function() {
+    jQuery("#bigImage img").attr("src",jQuery("#mycarousel li:first").find("img").attr("src"));
+    jQuery("#bigImage a").attr("href",jQuery("#mycarousel li:first").find("img").attr("src"));
+    jQuery("#mycarousel li:first").find("img").toggleClass ('jcarousel-itemNormal').addClass("jcarousel-itemCurrent");
+    jQuery('#mycarousel').jcarousel();
+    
+    $("#mycarousel li").mouseover(function(){
+        jQuery("#bigImage img").attr("src",jQuery(this).find("img").attr("src"));
+        jQuery("#bigImage a").attr("href",jQuery(this).find("img").attr("src"));
+        $(this).siblings().each(function(){
+            jQuery(this).find("img").toggleClass().addClass('jcarousel-itemNormal');
+        })
+        jQuery(this).find("img").toggleClass('jcarousel-itemNormal').addClass("jcarousel-itemCurrent");
+    })     
+});
+
+</script>
+
+<{*商品參數說明開始*}>
+
+<div class="items_msg">
+<{if $itemdescription  eq '1'}>
+<ul >
+<li><strong><{$smarty.const._MD_CATALOG_BELONGCAT}>：</strong><{$item.cat_name}></li>
+<li><strong><{$smarty.const._MD_CATALOG_BELONGCATA}></strong><a title="<{$item.item_name}>"  href="<{$xoops_url}>/modules/catalog/item.php?item_id=<{$item.item_id}>#A"><{$item.item_name}></a></li>
+
+<{if $item.item_repairtime}><li><strong><{$smarty.const._MD_CATALOG_ITEMPACK}>：</strong><{$item.item_repairtime}></li><{/if}>
+<{if $item.item_weight}>
+<li><strong><{$smarty.const._MD_CATALOG_WEIGHT}>：</strong><{$item.item_weight}></li><{/if}>
+
+
+
+
+
+<{if $item.shop_price}><li><strong><{$smarty.const._MD_CATALOG_MADEIN}>：</strong><{$item.shop_price}></li><{/if}>
+
+
+<{*<li><strong><{$smarty.const._MD_CATALOG_BULIDDATE}>：</strong><{$item.create_time}></li>*}>
+
+<{if $item.item_weights}>
+<li><strong><{$smarty.const._MD_CATALOG_WEIGHTA}>：</strong><{$item.item_weights}></li><{/if}>
+
+<{if $item.item_size}><li><strong><{$smarty.const._MD_CATALOG_MAINFUNCTION}>：</strong><{$item.item_size}></li><{/if}>
+
+<{if $item.item_weight2}><li><strong><{$smarty.const._MD_CATALOG_WEIGHT2}>：</strong><{$item.item_weight2}></li><{/if}>
+
+<{if $item.item_weightss}>
+<li><strong><{$smarty.const._MD_CATALOG_WEIGHTAA}>：</strong><{$item.item_weightss}></li><{/if}>
+
+<{if $item.item_weightsss}>
+<li><strong><{$smarty.const._MD_CATALOG_WEIGHTAAA}>：</strong><{$item.item_weightsss}></li><{/if}>
+</ul>
+
+<{*<{php}>
+$item_id=(empty($_REQUEST['item_id']))?"":$_REQUEST['item_id'];
+
+global  $xoopsDB;
+
+$sql = "select * from " . $xoopsDB->prefix('catalog_item')   . " where `item_id` = $item_id";
+$result = $xoopsDB -> query($sql) or die($sql);  
+  list($item_ida,$item_namea,$item_sna,$cat_ida) = $xoopsDB -> fetchRow($result);
+
+
+
+
+
+$this->assign('catalogcat_id', $cat_ida);	
+<{/php}>
+
+
+
+
+<{if $catalogcat_id eq 1}>
+<div id="reservationItem<{$xoops_langcode}>"><a title="<{$smarty.const._MD_CATALOG_IWANTRESERVATION}>-<{$smarty.const._MD_CATALOG_LIMOUSINETRANSFERS}>"  href="<{$xoops_url}>/modules/reservation/index.php?op=car&item=<{$reservationItem}>" target="_blank"><{$smarty.const._MD_CATALOG_IWANTRESERVATION}></a></div>
+<{/if}>
+
+
+
+
+<{if $catalogcat_id eq 3}>
+<div id="reservationItem<{$xoops_langcode}>"><a title="<{$smarty.const._MD_CATALOG_IWANTRESERVATION}>-<{$smarty.const._MD_CATALOG_BEAUTYCARWASH}>"  href="<{$xoops_url}>/modules/reservation/index.php?op=wash#A" target="_blank"><{$smarty.const._MD_CATALOG_IWANTRESERVATION}></a></div>
+<{/if}>
+*}>
+
+
+
+
+<{/if}>
+
+
+<{if $xoops_isadmin}>
+ <div >  <a href="admin/admin.item.php?op=edit&amp;item_id=<{$item.item_id}>" target="_blank"><{$smarty.const._MD_CATALOG_EDIT}></a> |
+             <a href="admin/admin.byitems.php?item_id=<{$item.item_id}>" target="_blank"><{$smarty.const._MD_CATALOG_EDITRELATIONITEM}></a> |
+              	<a href="admin/action.item.php?ac=delete&amp;item_id=<{$item.item_id}>" target="_blank"><{$smarty.const._MD_CATALOG_DELETE}></a></div>
+                
+                
+ <{/if}> 
+ 
+</div>
+
+
+
+
+<{*商品參數說明結束*}>
+
+
+<{*商品播放器開始*}>
+<div id="catalogplay">
+<div id="divimg">
+<{*<div id="divimgh2"><h2><{$item.item_name}></h2></div>*}>
+
+<div id="bigImage"><a class="lightbox"><img /></a></div></div>
+    <ul id="mycarousel" class="jcarousel-skin-tango">
+
+    <{foreach item=gallery from=$item.relevance.picture}>
+        <li><a class="lightbox" href="<{$xoops_url}>/uploads/gallery/<{$gallery.pic_path}>"><img class="jcarousel-itemNormal"  src="<{$xoops_url}>/uploads/gallery/<{$gallery.pic_path}>" width="40" height="40" /></a></li>
+    <{/foreach}>
+    </ul>
+</div>    
+<{*商品播放器結束*}> 
+
+ 
+<{*加入比較商品開始*}> 
+   <{* <form id="form2" name="form2" method="post" action="item.php?item_id=<{$item.item_id}>">
+   <div id="SUBMI">  <div id="greeneplogo"><{$smarty.const._MD_CATALOG_GREENEP}>：<img src="<{$xoops_url}>/uploads/<{$item.greenep_logo}>" width="50" /></div>
+ <h2>
+        <input name="comparison" id="" value="<{$item.item_id}>"  type="checkbox" <{if $item.comparison}>checked="checked"<{/if}> /><{$smarty.const._MD_CATALOG_JOINCOMPARE}>
+        <input type="hidden" name="action" value="1" />
+        <input type="submit" name="button" id="button" value="<{$smarty.const._SUBMIT}>">
+    </h2></div>
+    </form>*}>
+<{*加入比較商品結束*}>     
+    
+    <{*
+    <SCRIPT language=JavaScript>
+    $(document).ready(function() {
+        $("[name='item_ids[<{$item.item_id}>]']").change(function(){
+            var item_id = '<{$item.item_id}>';  
+            if($(this).attr("checked"))
+            {
+                var op = "setcookie";
+                var ac = "insert";
+                $.ajax({
+                type: "get",
+                url: "ajax.comparison.php",
+                data:   '&item_id=' + item_id + '&op=' + op,
+                success: function(msg){   
+                    $("#com").html(msg);
+                }
+                });
+            } else {
+                var ac = "delete";
+                $.ajax({
+                    type: "get",
+                    url: "ajax.comparison.php",
+                    data:   'item_id=' + item_id + '&op=delcookie',
+                    success: function(msg){
+                        $("#com").html(msg);
+                    }
+                });
+                //$('#favorites_item_id' + item_id).remove(); 
+            }     
+        }); 
+    });
+    </SCRIPT>
+*}>
+
+<!-- end image -->
+
+
+<!-- start RATE -->
+<script type="text/javascript">
+$(document).ready(function() {
+var raterOptions	= {    
+    value : <{$item.type1}>,
+    enabled : false,
+	max	: 5,
+	image :  '<{xoAppUrl /}>/modules/catalog/include/rater-stars/star.gif'
+}    
+    $("#rateformtype1").empty().rater(raterOptions);
+
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+var raterOptions	= {    
+    value : <{$item.type2}>,
+    enabled : false,
+	max	: 5,
+	image :  '<{xoAppUrl /}>/modules/catalog/include/rater-stars/star.gif'
+}    
+    $("#rateformtype2").empty().rater(raterOptions);
+
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+var raterOptions	= {    
+    value : <{$item.type3}>,
+    enabled : false,
+	max	: 5,
+	image :  '<{xoAppUrl /}>/modules/catalog/include/rater-stars/star.gif'
+}    
+    $("#rateformtype3").empty().rater(raterOptions);
+
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+var raterOptions	= {    
+    value : <{$item.type4}>,
+    enabled : false,
+	max	: 5,
+	image :  '<{xoAppUrl /}>/modules/catalog/include/rater-stars/star.gif'
+}    
+    $("#rateformtype4").empty().rater(raterOptions);
+
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+var raterOptions	= {    
+    value : <{$item.type5}>,
+    enabled : false,
+	max	: 5,
+	image :  '<{xoAppUrl /}>/modules/catalog/include/rater-stars/star.gif'
+}    
+    $("#rateformtype5").empty().rater(raterOptions);
+
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+var raterOptions	= {    
+    value : <{$item.rating}>,
+    enabled : false,
+	max	: 5,
+	image :  '<{xoAppUrl /}>/modules/catalog/include/rater-stars/star.gif'
+}    
+    $("#rateformtype6").empty().rater(raterOptions);
+
+});
+</script>
+              
+<{*
+<div id="itemradio">
+<table >
+  <tr>
+  <th colspan="2"><h3><{$smarty.const._MD_CATALOG_RATE}></h3></th></tr>
+    <td id="lefttd"><ul >
+    <li><{$smarty.const._MD_CATALOG_EFFICIENCYVALUE}>：
+                <span id="rateformtype1"> 
+                <{php}>
+                for($i=5;$i>0;$i--) echo'<span><input type="radio" name="rate" id="rate'.$i.'" value="'.$i.'" />'.$i.'</span>';
+                <{/php}>
+                </span>
+    </li>
+    <li><{$smarty.const._MD_CATALOG_FACEVALUE}>：
+                <span id="rateformtype2"> 
+                <{php}>
+                for($i=5;$i>0;$i--) echo'<span><input type="radio" name="rate" id="rate'.$i.'" value="'.$i.'" />'.$i.'</span>';
+                <{/php}>
+                </span>    
+    </li>
+    <li><{$smarty.const._MD_CATALOG_PRICEVALUE}>：
+                <span id="rateformtype3"> 
+                <{php}>
+                for($i=5;$i>0;$i--) echo'<span><input type="radio" name="rate" id="rate'.$i.'" value="'.$i.'" />'.$i.'</span>';
+                <{/php}>
+                </span>      
+    </li>
+    <li><{$smarty.const._MD_CATALOG_SIZEBYWEIGHTVALUE}>：
+                <span id="rateformtype4"> 
+                <{php}>
+                for($i=5;$i>0;$i--) echo'<span><input type="radio" name="rate" id="rate'.$i.'" value="'.$i.'" />'.$i.'</span>';
+                <{/php}>
+                </span>     
+    </li>
+    <li><{$smarty.const._MD_CATALOG_AFTERSERVICEVALUE}>：
+                <span id="rateformtype5"> 
+                <{php}>
+                for($i=5;$i>0;$i--) echo'<span><input type="radio" name="rate" id="rate'.$i.'" value="'.$i.'" />'.$i.'</span>';
+                <{/php}>
+                </span>     
+    </li>
+    <li><{$smarty.const._MD_CATALOG_RATINGVALUE}>：
+                <span id="rateformtype6"> 
+                <{php}>
+                for($i=5;$i>0;$i--) echo'<span><input type="radio" name="rate" id="rate'.$i.'" value="'.$i.'" />'.$i.'</span>';
+                <{/php}>
+                </span>     
+    </li>
+    <li style="display: none;"><{$smarty.const._MD_CATALOG_JOINPEOPLENUM}> : <{$item.rates}></li>
+</ul></td>
+    <td><form id="form" name="form" method="post" action="action.vote.php">
+<ul style="list-style:none;">
+    <li>
+        <{$smarty.const._MD_CATALOG_EFFICIENCY}>
+        <input type="radio" name="rate[1]" class="type1" value="1" />1<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[1]" class="type1" value="2" />2<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[1]" class="type1" value="3" />3<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[1]" class="type1" value="4" />4<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[1]" class="type1" value="5" />5<{$smarty.const._MD_CATALOG_STAR}>
+    </li>
+    <li>
+        <{$smarty.const._MD_CATALOG_FACE}>
+        <input type="radio" name="rate[2]" class="type2" value="1" />1<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[2]" class="type2" value="2" />2<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[2]" class="type2" value="3" />3<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[2]" class="type2" value="4" />4<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[2]" class="type2" value="5" />5<{$smarty.const._MD_CATALOG_STAR}>
+    </li>
+    <li>
+        <{$smarty.const._MD_CATALOG_PRICE}>
+        <input type="radio" name="rate[3]" class="type3" value="1" />1<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[3]" class="type3" value="2" />2<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[3]" class="type3" value="3" />3<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[3]" class="type3" value="4" />4<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[3]" class="type3" value="5" />5<{$smarty.const._MD_CATALOG_STAR}> 
+    </li>
+    <li>
+        <{$smarty.const._MD_CATALOG_SIZEBYWEIGHT}>
+        <input type="radio" name="rate[4]" class="type4" value="1" />1<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[4]" class="type4" value="2" />2<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[4]" class="type4" value="3" />3<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[4]" class="type4" value="4" />4<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[4]" class="type4" value="5" />5<{$smarty.const._MD_CATALOG_STAR}> 
+    </li>
+    <li>
+        <{$smarty.const._MD_CATALOG_SERVICE}>
+        <input type="radio" name="rate[5]" class="type5" value="1" />1<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[5]" class="type5" value="2" />2<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[5]" class="type5" value="3" />3<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[5]" class="type5" value="4" />4<{$smarty.const._MD_CATALOG_STAR}>
+        <input type="radio" name="rate[5]" class="type5" value="5" />5<{$smarty.const._MD_CATALOG_STAR}> 
+    </li>
+    <li><span id="spana"><{$smarty.const._MD_CATALOG_JOINPEOPLENUM}> : <{$item.rates}></span><input type="submit" class="art-button" value="<{$smarty.const._MD_CATALOG_IWANTRATE}>" /></li>
+</ul>
+<input type='hidden' name='item_id' id='item_id' value='<{$item.item_id}>' />
+</form></td>
+  </tr>
+</table>
+</div>    *}>
+
+<!-- end rate -->
+
+
+<br />
+
+<div id="explanation">
+
+<{if $symbols}>
+<div id="item04item">
+<div id="item06item"><h3><a name="#B1"><{$smarty.const._MD_CATALOG_SYMBOL}></a></h3></div>
+<{foreach item=symbols from=$symbols}>
+<img src="<{$symbols.link_image}>"  /></a> 
+<{/foreach}>
+</div>
+<{/if}>
+
+
+<script>  
+
+function  itemstylea(aaa){
+	
+	
+	switch(aaa){
+		
+		case  01:		
+		<{if $item.item_summary}>
+		document.getElementById("item01a").style.color = '#E60012';
+		document.getElementById("item01a").style.border = '1px solid #E60012';
+	    document.getElementById("item01a").style.backgroundColor= '#FFF2F2';	
+		
+		
+		<{/if}>
+		 <{if $item.item_description}>
+		document.getElementById("item02a").style.color = '#545454';
+		document.getElementById("item02a").style.border = '1px solid #9E9E9E';
+	    document.getElementById("item02a").style.backgroundColor= '#EFEFEF';
+		<{/if}>
+		
+		
+		<{if $item.item_service}>		
+		document.getElementById("item03a").style.color = '#545454';
+		document.getElementById("item03a").style.border = '1px solid #9E9E9E';
+	    document.getElementById("item03a").style.backgroundColor= '#EFEFEF';
+		<{/if}>
+		 <{if $files}>	
+		document.getElementById("item04a").style.color = '#545454';
+		document.getElementById("item04a").style.border = '1px solid #9E9E9E';
+	    document.getElementById("item04a").style.backgroundColor= '#EFEFEF';
+		<{/if}>
+		
+		
+	break
+	
+		
+		case  02:
+		
+		<{if $item.item_summary}>
+		document.getElementById("item01a").style.color = '#545454';
+		document.getElementById("item01a").style.border = '1px solid #9E9E9E';
+	    document.getElementById("item01a").style.backgroundColor= '#EFEFEF';
+			<{/if}>
+		 <{if $item.item_description}>
+		document.getElementById("item02a").style.color = '#E60012';
+		document.getElementById("item02a").style.border = '1px solid #E60012';
+	    document.getElementById("item02a").style.backgroundColor= '#FFF2F2';	
+			<{/if}>
+			<{if $item.item_service}>	
+		document.getElementById("item03a").style.color = '#545454';
+		document.getElementById("item03a").style.border = '1px solid #9E9E9E';
+	    document.getElementById("item03a").style.backgroundColor= '#EFEFEF';
+			<{/if}>
+		 <{if $files}>	
+		document.getElementById("item04a").style.color = '#545454';
+		document.getElementById("item04a").style.border = '1px solid #9E9E9E';
+	    document.getElementById("item04a").style.backgroundColor= '#EFEFEF';	
+			<{/if}>
+		break
+		
+		case  03:
+		<{if $item.item_summary}>
+		document.getElementById("item01a").style.color = '#545454';
+		document.getElementById("item01a").style.border = '1px solid #9E9E9E';
+	    document.getElementById("item01a").style.backgroundColor= '#EFEFEF';
+			<{/if}>		
+		 <{if $item.item_description}>
+		document.getElementById("item02a").style.color = '#545454';
+		document.getElementById("item02a").style.border = '1px solid #9E9E9E';
+	    document.getElementById("item02a").style.backgroundColor= '#EFEFEF';
+			<{/if}>
+			<{if $item.item_service}>	
+		document.getElementById("item03a").style.color = '#E60012';
+		document.getElementById("item03a").style.border = '1px solid #E60012';
+	    document.getElementById("item03a").style.backgroundColor= '#FFF2F2';		
+			<{/if}>
+		 <{if $files}>	
+		document.getElementById("item04a").style.color = '#545454';
+		document.getElementById("item04a").style.border = '1px solid #9E9E9E';
+	    document.getElementById("item04a").style.backgroundColor= '#EFEFEF';
+			<{/if}>
+		break	
+		
+		case  04:
+		<{if $item.item_summary}>
+		document.getElementById("item01a").style.color = '#545454';
+		document.getElementById("item01a").style.border = '1px solid #9E9E9E';
+	    document.getElementById("item01a").style.backgroundColor= '#EFEFEF';
+		<{/if}>		
+		 <{if $item.item_description}>
+		document.getElementById("item02a").style.color = '#545454';
+		document.getElementById("item02a").style.border = '1px solid #9E9E9E';
+	    document.getElementById("item02a").style.backgroundColor= '#EFEFEF';
+		<{/if}>
+		<{if $item.item_service}>	
+		document.getElementById("item03a").style.color = '#545454';
+		document.getElementById("item03a").style.border = '1px solid #9E9E9E';
+	    document.getElementById("item03a").style.backgroundColor= '#EFEFEF';
+		<{/if}>
+		<{if $files}>	
+		document.getElementById("item04a").style.color = '#E60012';
+		document.getElementById("item04a").style.border = '1px solid #E60012';
+	    document.getElementById("item04a").style.backgroundColor= '#FFF2F2';	
+		<{/if}>
+		break		
+	
+		}
+
+	
+	
+	}
+
+
+
+
+function item01item(){  
+itemstylea(01);
+  <{if $item.item_summary}> document.getElementById("item01item").style.display = ""; <{/if}>
+   <{if $item.item_description}>	document.getElementById("item02item").style.display = "none";	<{/if}>
+   <{if $item.item_service}>	document.getElementById("item03item").style.display = "none";<{/if}>
+    <{if $files}>	document.getElementById("item04item").style.display = "none";<{/if}>
+}  
+function item02item(){
+itemstylea(02);		
+<{if $item.item_summary}>document.getElementById("item01item").style.display = "none"; <{/if}>
+  	 <{if $item.item_description}>document.getElementById("item02item").style.display = "";	<{/if}>
+   <{if $item.item_service}>	document.getElementById("item03item").style.display = "none";<{/if}>
+    <{if $files}>	document.getElementById("item04item").style.display = "none";<{/if}>
+}
+function item03item(){    
+itemstylea(03);		
+ <{if $item.item_summary}>document.getElementById("item01item").style.display = "none";  <{/if}>
+   <{if $item.item_description}>	document.getElementById("item02item").style.display = "none";	<{/if}>
+   <{if $item.item_service}>	document.getElementById("item03item").style.display = "";<{/if}>
+    <{if $files}>	document.getElementById("item04item").style.display = "none";<{/if}>
+}
+
+function item04item(){     
+itemstylea(04);		
+ <{if $item.item_summary}>document.getElementById("item01item").style.display = "none";  <{/if}>
+   <{if $item.item_description}>	document.getElementById("item02item").style.display = "none";	<{/if}>
+   <{if $item.item_service}>	document.getElementById("item03item").style.display = "none";<{/if}>
+    <{if $files}>	document.getElementById("item04item").style.display = "";<{/if}>
+}
+
+</script>
+<div id="itemulleft">
+<ul>
+    <{if $item.item_summary}><li  onmouseover="item01item();"><span><a  id="item01a" name="01"><{$smarty.const._MD_CATALOG_FUNCTIONDESC}></a></span></li><{/if}>
+    <{if $item.item_description}><li onmouseover="item02item();"><a id="item02a" name="02"><{$smarty.const._MD_CATALOG_DETAILSPEC}></a></li><{/if}>
+    <{if $item.item_service}><li onmouseover="item03item();"><a id="item03a" name="03"><{$smarty.const._MD_CATALOG_AFTERSERVICE}></a></li><{/if}>
+  <{if $files}>  <li onmouseover="item04item();"><a id="item04a" name="04"><{$smarty.const._MD_CATALOG_ITEMFILEDOWNLOAD}></a></li> <{/if}>
+</ul>
+</div>
+<br />
+
+
+<{if $item.item_summary}><div id="itemitemsummary">
+
+
+<div id="item01item">
+<div id="itemitema"></div>
+<{*<h3><a name="#B1"><{$smarty.const._MD_CATALOG_FUNCTIONDESC}></a></h3>*}>
+<{$item.item_summary}>
+</div> 
+<{/if}>
+
+<{if $item.item_description}>
+<div id="item02item" style="display:none;">
+<div id="itemitema"></div>
+<{*<h3><a name="#B2"><{$smarty.const._MD_CATALOG_DETAILSPEC}></a></h3>*}>
+<{$item.item_description}> 
+</div>
+<{/if}>
+ 
+<{if $item.item_service}>
+<div id="item03item" style="display:none;">
+<div id="itemitema"></div>
+<{$item.item_service}> 
+</div> 
+<{/if}>
+
+
+
+<{if $files}>
+<div id="item04item" style="display:none;">
+<div id="itemitema"></div>
+<{foreach item=files from=$files}>
+<div id="files"><a title="<{$files.att_filename}>" href="<{$xoops_url}>/modules/catalog/downloads.php?id=<{$files.att_id}>" ><{$files.att_filename}></a></div> 
+<{/foreach}>
+</div>
+<{/if}>
+<div style="clear:both;"></div>
+</div>
+
+
+
+
+<div id="item05item">
+<{*<h3><a name="#B5"><{$smarty.const._MD_CATALOG_RESELLER}></a></h3>*}>
+<!-- start rate -->
+<script type="text/javascript" src="include/rater-star/jquery.rater.js"></script>
+<link href="include/rater-star/jquery.rater.css" rel="stylesheet"/>
+<{foreach item=resellers from=$resellers}>
+
+<div id="resellers">
+   <div id="resellersdiv">  <a href='<{$xoops_url}>/modules/reseller/redirect.php?id=<{$resellers.link_id}>&amp;url=<{$resellers.link_url}>' target="_blank"><img src="<{$resellers.link_image}>"  /></a>  </div>  
+    <div id="reseller-rate<{$resellers.link_id}>">
+    <h4><{$smarty.const._MD_CATALOG_RATE}> : <span id="rateValue<{$resellers.link_id}>"><{$resellers.reseller_rating}>/<{$resellers.reseller_rates}></span> </h4>
+   
+    <div id="rateform<{$resellers.link_id}>">
+    <form action="<{$xoops_url}>/modules/<{$xoops_dirname}>/action.rate.php" method="post">
+        <div class="rate-item">
+        <{php}>
+        for($i=5;$i>0;$i--) echo'<span><input type="radio" name="rate" id="rate'.$i.'" value="'.$i.'" />'.$i.'</span>';
+        <{/php}>
+            <span>
+                <input type="hidden" name="link_id" value="<{$resellers.link_id}>" />
+                <input type="submit" class="article-button" value="<{$smarty.const._MD_CATALOG_RATEIT}>" />
+            </span>
+        </div>
+    </form>
+    </div>
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+    var raterOptions	= {
+        value : <{$resellers.reseller_rating}>,
+    	max	: 5,
+    	url		: '<{$xoops_url}>/modules/<{$xoops_dirname}>/ajax.action.rate.php?item_id=<{$item.item_id}>',
+    	method	: 'get',
+    	data : <{$resellers.link_id}>,
+    	after_ajax	: function(ret) {
+    		this.value	= ret.rating;
+    		this.enabled= false;
+    		alert(ret.msg);
+    		$("#rateValue<{$resellers.link_id}>").replaceWith(ret.rating+'/'+ret.rates);
+    		$("#rateform<{$resellers.link_id}>").rater(this);
+        }
+    }
+    
+    $("#rateform<{$resellers.link_id}>").empty().rater(raterOptions);
+    
+    });
+    </script>
+    </div> </div>
+    <!-- end rate -->            
+<{/foreach}>
+
+<!-- start link_item -->
+<{*<script type="text/javascript" src="./include/linkslider/jquery.slider.js"></script>
+<link rel="stylesheet" type="text/css" href="./include/linkslider/style.css" />
+</div>
+
+
+<div id="itembyitems">
+
+<table >
+  <tr>
+    <td><h2><{$smarty.const._MD_CATALOG_RELATIONITEM}></h2>
+<div class="infiniteCarousel">
+<div class="wrapper">
+<ul>
+    <{foreach item=by_item from=$item.by_items}>
+        <li><a href="item.php?item_id=<{$by_item.item_id}>#A"> <img  src="<{$xoops_url}>/uploads/gallery/<{$by_item.item_picture}>"   alt="<{$by_item.item_name}>" /></a></li>
+    <{/foreach}>
+</ul>
+</div>
+</div></td>
+    <td><h2><{$smarty.const._MD_CATALOG_COMPAREITEM}></h2>
+<div class="infiniteCarousel">
+<div class="wrapper">
+<ul>
+    <{foreach item=compareitem from=$compare_items}>
+        <li><a href="item.php?item_id=<{$compareitem.item_id}>#A"><img  src="<{$xoops_url}>/uploads/gallery/<{$compareitem.item_picture}>"   alt="<{$compareitem.item_picture}>" /></a></li>
+    <{/foreach}>
+</ul>
+</div>
+</div></td>
+  </tr>
+</table>
+</div>
+ *}>
+
+
+
+
+</div>
+
+<!-- start link_item -->
+ <{*<script type="text/javascript" src="./include/linkslider/jquery.slider.js"></script>
+<link rel="stylesheet" type="text/css" href="./include/linkslider/style.css" />
+<table >
+  <tr>
+    <td><h2>相關產品</h2>
+<div class="infiniteCarousel">
+<div class="wrapper">
+<ul>
+    <{foreach item=by_item from=$item.by_items}>
+        <li><a href="item.php?item_id=<{$by_item.item_id}>#A"> <img  src="<{$xoops_url}>/uploads/gallery/<{$by_item.item_picture}>"   alt="<{$by_item.item_name}>" /></a></li>
+    <{/foreach}>
+</ul>
+</div>
+</div></td>
+ 
+   <td><h2>比較商品</h2>
+<div class="infiniteCarousel">
+<div class="wrapper">
+<ul>
+    <{foreach item=compareitem from=$compare_items}>
+        <li><a href="item.php?item_id=<{$compareitem.item_id}>#A"><img  src="<{$xoops_url}>/uploads/gallery/<{$compareitem.item_picture}>"   alt="<{$compareitem.item_picture}>" /></a></li>
+    <{/foreach}>
+</ul>
+</div>
+</div></td>
+
+  </tr>
+</table>
+</div>*}>
+
+
+<!-- start link_item -->
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    jQuery('#linksliderL').jcarousel({
+        scroll: 1,
+        auto: 1,
+        wrap: 'both'         
+    });
+    jQuery('#linksliderR').jcarousel({
+        scroll: 1,
+        auto: 1,
+        wrap: 'both'         
+    });    
+ 
+});
+
+</script> 
+
+<link rel="stylesheet" type="text/css" href="./include/linkslider/style.css" />
+<div id="bottomitem_picture">
+<table >
+ <{if $item.by_items}>
+  <tr>
+    <td>
+   <{*相關產品*}> 
+    <h3><{$smarty.const._MD_CATALOG_RELATIONITEM}></h3>
+<ul id="linksliderL" class="jcarousel jcarousel-skin-linksliderL">
+ <{foreach item=by_item from=$item.by_items}>
+        <li>
+        <div id="imgdiv"><a href="item.php?item_id=<{$by_item.item_id}>#A"> <img  src="<{$xoops_url}>/uploads/gallery/<{$by_item.item_picture}>"   alt="<{$by_item.item_name}>" /></a></div></li>
+    <{/foreach}>
+</ul>
+<{/if}>
+</td>
+  <{*  <td><h3><{$smarty.const._MA_NEOSHOP_COMPARISON_GOODS}></h3>
+<ul id="linksliderR" class="jcarousel jcarousel-skin-linksliderR">
+    <{foreach item=compareitem from=$compare_items}>
+        <li><a href="item.php?item_id=<{$compareitem.item_id}>"><img  src="<{$xoops_url}>/uploads/gallery/<{$compareitem.item_picture}>"  alt="<{$compareitem.item_picture}>" /></a></li>
+    <{/foreach}>
+</ul>
+</td>*}>
+  </tr>
+</table>
+</div>
+ 
+
+</div>  
+
+<{*
+<{if $xoops_langcode  eq  "zh-TW"}>
+<{assign var="fblangcode" value="zh_TW"}>
+<{elseif $xoops_langcode  eq  "cn"}>
+<{assign var="fblangcode" value="zh_CN"}>
+<{elseif $xoops_langcode  eq  "en"}>
+<{assign var="fblangcode" value="zh_EN"}>
+<{/if}>
+
+
+
+
+
+<div id="fbroot">
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/<{$fblangcode}>/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+</div>
+
+<{php}>
+//取得當前頁面完整網址
+$httphost = $_SERVER['HTTP_HOST']; 
+$requesturl = $_SERVER['REQUEST_URI'];
+$http = 'http://';
+$httphosturl= $http.$httphost.$requesturl; 
+
+
+$this->assign('httphosturl', $httphosturl);
+<{/php}>
+
+<h3><{$smarty.const._MD_CATALOG_FacebookComments}></h3>
+
+
+<div id="footfb">
+<div id="fb-root">&nbsp;</div>
+
+<div class="fb-comments" data-href="<{$httphosturl}>"  data-width="700">&nbsp;</div>
+</div>
+*}>
+<!-- end link_item -->
+
+<div style="text-align: center; padding: 3px; margin: 3px;">
+    <{$commentsnav}>
+    <{$lang_notice}>
+</div>
+<div style="margin:3px; padding: 3px;">
+<{if $comment_mode == "flat"}>
+<{include file="db:system_comments_flat.html"}>
+<{elseif $comment_mode == "thread"}>
+<{include file="db:system_comments_thread.html"}>
+<{elseif $comment_mode == "nest"}>
+<{include file="db:system_comments_nest.html"}>
+<{/if}>
+</div>
+<div style="position: absolute; 	top: 10000px;">
+<img  src="<{$xoops_url}>/modules/<{$xoops_dirname}>/counter.php?item=<{$item.item_id}>" width="1px" height="1px" />
+</div>
+</div>
+
