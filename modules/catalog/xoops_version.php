@@ -16,12 +16,7 @@
  * @author          Susheng Yang <ezskyyoung@gmail.com> 
  * @version         $Id: xoops_version.php  $
  */
- 
-/**
- * 
- * 
- *
- */
+
 $modversion = array();
 $modversion['name'] = _CATALOG_MI_NAME;
 $modversion['version'] = 'V4';
@@ -44,9 +39,7 @@ $modversion['onUpdate'] = "include/action.module.php";
 // Menu
 $modversion['hasMain'] = 1;
 
-
 // Mysql file
-
 $modversion["sqlfile"]["mysql"] = "sql/mysql.sql";
 $modversion["tables"] = array(
 "catalog_brand",
@@ -220,7 +213,6 @@ $modversion['blocks'][] = array(
   	'edit_func'		=> 'catalog_items_special_edit',
   	'template'		=> 'blocks_items_Random.html'
 );
-
 
 $modversion['blocks'][] = array(
   	'file'			=> 'blocks.php',

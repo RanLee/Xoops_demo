@@ -1,7 +1,5 @@
 <?php
 
-
-
 if (!defined("XOOPS_ROOT_PATH")) {
     die("XOOPS root path not defined");
 }
@@ -30,8 +28,8 @@ class CatalogItem extends XoopsObject
         $this->initVar('item_weight', XOBJ_DTYPE_TXTBOX);
         $this->initVar('item_weights', XOBJ_DTYPE_TXTBOX);
         $this->initVar('item_weightss', XOBJ_DTYPE_TXTBOX);
-       $this->initVar('item_weightsss', XOBJ_DTYPE_TXTBOX);     
-       $this->initVar('item_weight2', XOBJ_DTYPE_TXTBOX);           
+        $this->initVar('item_weightsss', XOBJ_DTYPE_TXTBOX);
+        $this->initVar('item_weight2', XOBJ_DTYPE_TXTBOX);
         $this->initVar('item_inventory', XOBJ_DTYPE_INT, 0);
         $this->initVar('item_description', XOBJ_DTYPE_TXTAREA);
         $this->initVar('item_service', XOBJ_DTYPE_TXTAREA);
@@ -138,50 +136,42 @@ class CatalogItem extends XoopsObject
             }
         }
       
-        
-        
-        
- $cat_id=(empty($_REQUEST['cat_id']))?"":$_REQUEST['cat_id'];    
-        
-        
-        
-        
-        
-        
-        
-        
+        $cat_id=(empty($_REQUEST['cat_id']))?"":$_REQUEST['cat_id'];
         $cat_select = new XoopsFormSelect(_AM_CATALOG_ITEMCAT, "cat_id", $this->getVar("cat_id") != 0 ? $this->getVar("cat_id") : $cat_id);
         $cat_select->addOption('', _AM_CATALOG_CHOICE);
         $cat_select->addOptionArray($cat_options);
-        $form->addElement($cat_select, true);               
-       /*
+        $form->addElement($cat_select, true);
+
+        /*
         $form->addElement(new XoopsFormText(_AM_CATALOG_ITEMNAME, 'item_name', 60, 255, $this->getVar('item_name')), true);
-     $form->addElement(new XoopsFormDateTime("產品建立日期", 'create_time', 15, $this->getVar('create_time', $format)));
+        $form->addElement(new XoopsFormDateTime("產品建立日期", 'create_time', 15, $this->getVar('create_time', $format)));
         $form->addElement(new XoopsFormText(_AM_CATALOG_MADEIN, 'shop_price', 40, 60, $this->getVar('shop_price')));  
-     $form->addElement(new XoopsFormText(_AM_CATALOG_ITEMPACK, 'item_repairtime', 40, 60, $this->getVar('item_repairtime'))); 
-     $form->addElement(new XoopsFormText(_AM_CATALOG_MAINFUNCTION, 'item_size', 100, 255, $this->getVar('item_size')));                                
-      $form->addElement(new XoopsFormText(_AM_CATALOG_SHOPPRICE, 'item_weight', 40, 60, $this->getVar('item_weight')));*/
+        $form->addElement(new XoopsFormText(_AM_CATALOG_ITEMPACK, 'item_repairtime', 40, 60, $this->getVar('item_repairtime')));
+        $form->addElement(new XoopsFormText(_AM_CATALOG_MAINFUNCTION, 'item_size', 100, 255, $this->getVar('item_size')));
+        $form->addElement(new XoopsFormText(_AM_CATALOG_SHOPPRICE, 'item_weight', 40, 60, $this->getVar('item_weight')));
+        */
       
-      
-       $form->addElement(new XoopsFormText('商品名稱', 'item_name', 60, 255, $this->getVar('item_name')), true);
- $form->addElement(new XoopsFormDateTime("建立日期", 'create_time', 15, $this->getVar('create_time', $format))); 
-           $form->addElement(new XoopsFormText('型號', 'item_repairtime', 40, 60, $this->getVar('item_repairtime'))); 
-            $form->addElement(new XoopsFormText('產品顏色', 'item_weight', 40, 60, $this->getVar('item_weight')));     
-        $form->addElement(new XoopsFormText('外觀', 'shop_price', 40, 60, $this->getVar('shop_price')));  
-       $form->addElement(new XoopsFormText('尺寸', 'item_weights', 40, 255, $this->getVar('item_weights'))); 
-       $form->addElement(new XoopsFormText('材質', 'item_size', 40, 60, $this->getVar('item_size')));                                
-               $form->addElement(new XoopsFormText('重量', 'item_weight2', 40, 255, $this->getVar('item_weight2'))); 
+        $form->addElement(new XoopsFormText('商品名稱', 'item_name', 60, 255, $this->getVar('item_name')), true);
+        $form->addElement(new XoopsFormDateTime("建立日期", 'create_time', 15, $this->getVar('create_time', $format)));
+        $form->addElement(new XoopsFormText('型號', 'item_repairtime', 40, 60, $this->getVar('item_repairtime')));
+        $form->addElement(new XoopsFormText('產品顏色', 'item_weight', 40, 60, $this->getVar('item_weight')));
+        $form->addElement(new XoopsFormText('外觀', 'shop_price', 40, 60, $this->getVar('shop_price')));
+        $form->addElement(new XoopsFormText('尺寸', 'item_weights', 40, 255, $this->getVar('item_weights')));
+        $form->addElement(new XoopsFormText('材質', 'item_size', 40, 60, $this->getVar('item_size')));
+        $form->addElement(new XoopsFormText('重量', 'item_weight2', 40, 255, $this->getVar('item_weight2')));
         $form->addElement(new XoopsFormText('包裝', 'item_weightss', 40, 255, $this->getVar('item_weightss'))); 
-             $form->addElement(new XoopsFormText('附註', 'item_weightsss', 40, 255, $this->getVar('item_weightsss')));  
+        $form->addElement(new XoopsFormText('附註', 'item_weightsss', 40, 255, $this->getVar('item_weightsss')));
    
-        
-       // $criteria2 = new CriteriaCompo();
-	   // $criteria2->setSort('greenep_weight');
-	  //  $criteria2->setOrder('ASC');        
-     //   $greeneps =& $greenep_handler->getList($criteria2);
-     //   $greenep_select = new XoopsFormRadio('供應綠環保程度', "greenep_id", $this->getVar("greenep_id"));
-     //   $greenep_select->addOptionArray($greeneps);
-     //   $form->addElement($greenep_select);                        
+        /*
+        $criteria2 = new CriteriaCompo();
+	    $criteria2->setSort('greenep_weight');
+	    $criteria2->setOrder('ASC');
+        $greeneps =& $greenep_handler->getList($criteria2);
+        $greenep_select = new XoopsFormRadio('供應綠環保程度', "greenep_id", $this->getVar("greenep_id"));
+        $greenep_select->addOptionArray($greeneps);
+        $form->addElement($greenep_select);
+        */
+
         $format = empty($format) ? "e" : $format;
         $form->addElement(new XoopsFormEditor(_AM_CATALOG_FUNCTIONDESC, "item_summary", array('editor'=>'ckeditor','width'=>'100%','height'=>'150px','name'=>'item_summary', 'value'=>$this->getVar('item_summary',$format)), false)); 
         $form->addElement(new XoopsFormEditor(_AM_CATALOG_DETAILSPEC_DESC,  "item_description", array('editor'=>'ckeditor','width'=>'100%','height'=>'200px','name'=>'item_description', 'value'=>$this->getVar('item_description',$format)), false));
@@ -191,8 +181,8 @@ class CatalogItem extends XoopsObject
         $link_select = new XoopsFormSelect(' ', "link_id", $this->getVar("link_id"));
         $link_select->addOption('',_NONE);
         $link_select->addOptionArray($links);
-/*     
-        
+
+        /*
         $link_tray = new XoopsFormElementTray("環保標章選擇", "&nbsp;<br />");
         $link_tray->addElement($link_select);
         if ($this->getVar("link_id")) {
@@ -204,15 +194,14 @@ class CatalogItem extends XoopsObject
             $link_tray->addElement(new XoopsFormLabel('','<span id="symbol_img"></span>'));
         }
         $form->addElement($link_tray);
-//<img src="" id="symbol_img" />
-*/ 
+        */
        
-       /* $links =& $link_handler->getList();
+        /*
+        $links =& $link_handler->getList();
         $link_select = new XoopsFormCheckBox('環保標章選擇', "link_id", explode(",",$this->getVar("link_id")));
         $link_select->addOptionArray($links);
         $form->addElement($link_select);
         
-               
         $resellers =& $reseller_handler->getList();
         $reseller_select = new XoopsFormCheckBox('優質店家選擇', "reseller_ids", explode(",",$this->getVar("reseller_ids")));
         $reseller_select->addOptionArray($resellers);
@@ -253,10 +242,10 @@ class CatalogItem extends XoopsObject
                 $gallery->addElement(new XoopsFormLabel('',_AM_CATALOG_AFTERCHOICED_DEL));
             }
         }           
-$form->addElement($gallery);
+        $form->addElement($gallery);
 
         // file 
-      $annex = new XoopsFormElementTray(_AM_CATALOG_ANNEXUPLOAD,'','annex');
+        $annex = new XoopsFormElementTray(_AM_CATALOG_ANNEXUPLOAD,'','annex');
         $annex_file = new XoopsFormFile('','annex','');
         $annex_multiLabel = new XoopsFormLabel('','<div><a id="addMoreAnnex" href="javascript:void(0);">'._AM_CATALOG_ADDMORE.'</a></div>');
         $annex->addElement($annex_file);
@@ -277,27 +266,21 @@ $form->addElement($gallery);
         $form->addElement($annex);  
         
       
-   /*   $cstatus_select = new XoopsFormSelect('選擇比較商品形態', "compare_status", $this->getVar("compare_status"));
-      $cstatus_select->addOption(1, '售價');
-       $cstatus_select->addOption(2, '尺寸');
-     $cstatus_select->addOption(3, '重量');
-       $cstatus_select->addOption(4, '保修年份');
-     $cstatus_select->addOption(5, '綠環保程度');
-      $cstatus_select->addOption(6, '評價');    
-      $form->addElement($cstatus_select);*/    
+        /*
+        $cstatus_select = new XoopsFormSelect('選擇比較商品形態', "compare_status", $this->getVar("compare_status"));
+        $cstatus_select->addOption(1, '售價');
+        $cstatus_select->addOption(2, '尺寸');
+        $cstatus_select->addOption(3, '重量');
+        $cstatus_select->addOption(4, '保修年份');
+        $cstatus_select->addOption(5, '綠環保程度');
+        $cstatus_select->addOption(6, '評價');
+        $form->addElement($cstatus_select);
+        */
    
-   
-   
-
-   
-   
-   
-   
-          
-      $form->addElement(new XoopsFormRadioYN(_AM_CATALOG_DOBEST, 'item_best',$this->getVar('item_best')));
-      //  $form->addElement(new XoopsFormRadioYN(_AM_CATALOG_DONEW, 'item_newarrival',$this->getVar('item_newarrival')));
-      //  $form->addElement(new XoopsFormRadioYN(_AM_CATALOG_DOHOT, 'item_hot',$this->getVar('item_hot')));   
-      //  $form->addElement(new XoopsFormText(_AM_CATALOG_SORT, 'weight', 40, 60, $this->getVar('weight')));       
+        $form->addElement(new XoopsFormRadioYN(_AM_CATALOG_DOBEST, 'item_best',$this->getVar('item_best')));
+//        $form->addElement(new XoopsFormRadioYN(_AM_CATALOG_DONEW, 'item_newarrival',$this->getVar('item_newarrival')));
+//        $form->addElement(new XoopsFormRadioYN(_AM_CATALOG_DOHOT, 'item_hot',$this->getVar('item_hot')));
+//        $form->addElement(new XoopsFormText(_AM_CATALOG_SORT, 'weight', 40, 60, $this->getVar('weight')));
         if ($this->isNew())   $form->addElement(new XoopsFormHidden('item_buildtime', time()));
         $form->addElement(new XoopsFormHidden('modify_time', time()));        
         $form->addElement(new XoopsFormHidden('item_id', $this->getVar('item_id')));
@@ -306,7 +289,7 @@ $form->addElement($gallery);
         
 //        $btn_preview = new XoopsFormButton("", "btn_preview", _PREVIEW, "button");
 //        $btn_preview->setExtra('onclick="window.document.' . $form->getName() . '.preview.value=1; window.document.' . $form->getName() . '.submit()"');
-//        $form->addElement(new XoopsFormHidden('preview', 0));        
+//        $form->addElement(new XoopsFormHidden('preview', 0));
                     
         $button_tray = new XoopsFormElementTray("");        
 //        $button_tray->addElement($btn_preview);         

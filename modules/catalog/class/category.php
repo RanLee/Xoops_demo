@@ -62,14 +62,14 @@ class CatalogCategory extends XoopsObject
             $action = $_SERVER['REQUEST_URI'];
         }  
         include_once XOOPS_ROOT_PATH."/class/xoopsformloader.php";
-        //分類名稱
+
         $title = $this->isNew() ? _AM_CATALOG_ADDCAT : _AM_CATALOG_UPDATECAT;
         $form = new XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         $form->addElement(new XoopsFormText(_AM_CATALOG_CATNAME, 'cat_name', 27, 255, $this->getVar('cat_name')), true);
         $categories =& $category_handler->getTrees(0, "--");
         
-        //選擇上級分類
+
         $cat_options = array();
         $cat_options[0] = _AM_CATALOG_TOPCAT;
         foreach ($categories as $id => $cat) {
@@ -82,32 +82,24 @@ class CatalogCategory extends XoopsObject
         $templates = catalog_getTemplateList("category");
                 
         
-        //樣板選擇
-        /*if (count($templates)>0) {
+        /*
+        if (count($templates)>0) {
             $template_select = new XoopsFormSelect(_AM_CATALOG_CHOICETPL, "cat_tpl", $this->getVar("cat_tpl"));
             $template_select->addOptionArray($templates);
             $form->addElement($template_select);
-        }        */      
+        }
+        */
         
         
-        //說明欄位
-       // $form->addElement(new XoopsFormTextArea(_AM_CATALOG_CATNAMEA,'cattext',$this->getVar('cattext'), 10));   
+//        $form->addElement(new XoopsFormTextArea(_AM_CATALOG_CATNAMEA,'cattext',$this->getVar('cattext'), 10));
         $form->addElement(new XoopsFormEditor(_AM_CATALOG_CATNAMEA, "cattext", array('editor'=>'ckeditor','width'=>'100%','height'=>'150px','name'=>'cattext', 'value'=>$this->getVar('cattext')), false)); 
 
         
-        
-        
-        
-        
-               
-               
-        
-        //排序
         $form->addElement(new XoopsFormText(_AM_CATALOG_SORT, 'cat_weight', 15, 40, $this->getVar('cat_weight')));
         
         //brand
         $brand_handler = xoops_getmodulehandler('brand','catalog');
-       $brand_list = new XoopsFormElementTray(_AM_CATALOG_LINKEDBRAND); 
+        $brand_list = new XoopsFormElementTray(_AM_CATALOG_LINKEDBRAND);
         $criteria = new CriteriaCompo();
         $criteria->setSort('brand_weight');
         $criteria->setOrder('ASC');
@@ -132,9 +124,9 @@ class CatalogCategory extends XoopsObject
         }else{
            $brand_list->addElement(new XoopsFormLabel('',_AM_CATALOG_UNLINKEDBRAND));
         }  
-        //關聯品牌             
-      //  $form->addElement($brand_list);        
-         
+
+        $form->addElement($brand_list);
+
         $form->addElement(new XoopsFormHidden('cat_id', $this->getVar('cat_id')));
         if ($this->isNew())   $form->addElement(new XoopsFormHidden('cat_published', time()));
         $form->addElement(new XoopsFormHidden('ac', 'save'));

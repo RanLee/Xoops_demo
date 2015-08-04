@@ -22,15 +22,13 @@ $xoopsOption['template_main'] = catalog_getTemplate("category", $category['cat_t
 include_once XOOPS_ROOT_PATH.'/header.php';
 
 
-//�����}�l
 global  $xoopsDB;	
- $dbnane=$xoopsDB->prefix('catalog_category');   
+$dbnane=$xoopsDB->prefix('catalog_category');
    
 $sql="select  *  from  $dbnane where `cat_id`= '$cat_id'";  
 $result = $xoopsDB -> query($sql) or die($sql);
 list($cat_id,$cat_name,$cat_unit,$cat_image,$cat_pid,$type_id,$cat_keywords,$cat_description,$isnav,$cat_status,$cat_weight,$cat_level,$cat_properties,$cat_tpl,$cat_tpl_css,$cat_published,$cattext) = $xoopsDB -> fetchRow($result);
 $xoopsTpl->assign('cattext', $cattext);
-
 
 
 $criteria = new CriteriaCompo();
@@ -58,18 +56,18 @@ if (!empty($brand_id)){
     $items_perpage =  $xoopsModuleConfig['branditems'];
     $criteria->setLimit($items_perpage);
 }
-    $start = isset($_GET["start"]) ? intval($_GET["start"]) : 0; 
-    $criteria->setStart($start); 
-    $total = intval($item_handler->getCount($criteria)); 
-    $pagenav = new XoopsPageNav($total, $items_perpage, $start, "start", @$ext);
-    $xoopsTpl->assign('pagenav', $pagenav->renderNav());
+
+$start = isset($_GET["start"]) ? intval($_GET["start"]) : 0;
+$criteria->setStart($start);
+$total = intval($item_handler->getCount($criteria));
+$pagenav = new XoopsPageNav($total, $items_perpage, $start, "start", @$ext);
+$xoopsTpl->assign('pagenav', $pagenav->renderNav());
      
 if($selweight == 'descending'){ 
-$itemsort =  'DESC';       
+    $itemsort =  'DESC';
 }else{
-//$itemsort =  'ASC';    
-$itemsort =  'DESC';       
-}    
+    $itemsort =  'ASC';
+}
      
 if($seltype == 'shop_price'){
     $criteria->setSort('shop_price');

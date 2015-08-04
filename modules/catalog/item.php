@@ -5,7 +5,7 @@ include_once 'header.php';
 $item_id = isset($_REQUEST['item_id']) ? intval($_REQUEST['item_id']) : '';
 
 $item_handler =& xoops_getmodulehandler('item', 'catalog');
-$brand_handler = xoops_getmodulehandler('brand','catalog');  
+$brand_handler = xoops_getmodulehandler('brand','catalog');
 $search_handler =& xoops_getmodulehandler('search', 'catalog');
 $greenep_handler = xoops_getmodulehandler('greenep','catalog');
 $link_handler =& xoops_getmodulehandler('symbol', 'symbol');
